@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<workspace>
+  <project>
+    <path>$WS_DIR$\01\01test.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\02\&#x63A5;&#x6536;\receive.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\02\&#x53D1;&#x9001;\LED\send.ewp</path>
+  </project>
+  <batchBuild/>
+</workspace>
+
+
