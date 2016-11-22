@@ -8,8 +8,8 @@
 
 #include<ioCC2530.h>
 #include"74LS164_8LED.h"
-#define SENDVAL 7
-char SendPacket[]={0x0c,0x61,0x88,0x00,0x07,0x20,0xEF,0xBE,0x20,0x50,SENDVAL};
+#define SENDVAL 5
+char SendPacket[]={0x19,0x61,0x88,0x00,0x07,0x20,0xEF,0xBE,0x20,0x50,'h','e','l','l','o',' ','l','a','o',' ','d','a','\r','\n'};
 //第一个字节0x0C含义，这个自己后面还有12个字节要发送
 //第5 6个字节表示的是PANID
 //第7 8个字节是无线模块目标设备的网络地址 0xBEEF
@@ -112,7 +112,7 @@ __interrupt void Key3_ISR() //P1_1
          {           
            P1DIR |=0X01;
            P1_0 ^=1;
-           RFSend(SendPacket,11);
+           RFSend(SendPacket,24);
          }     
      }
 

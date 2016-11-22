@@ -2,58 +2,74 @@
 
 <project>
   <fileVersion>2</fileVersion>
-  <fileChecksum>1104847335</fileChecksum>
+  <fileChecksum>3456406255</fileChecksum>
   <configuration>
     <name>Debug</name>
     <outputs>
-      <file>$PROJ_DIR$\LED\74LS164_8LED.c</file>
-      <file>$PROJ_DIR$\LED\Main.c</file>
-      <file>$TOOLKIT_DIR$\lib\clib\cl-pli-blxd-1e16x01.r51</file>
-      <file>$PROJ_DIR$\Debug\Exe\receive.d51</file>
-      <file>$PROJ_DIR$\Debug\Obj\Main.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\74LS164_8LED.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\Main.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\74LS164_8LED.r51</file>
       <file>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_CC2530F256_banked.xcl</file>
-      <file>$PROJ_DIR$\Debug\Exe\receive.hex</file>
-      <file>$PROJ_DIR$\Debug\Obj\receive.pbd</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl-pli-blxd-1e16x01.r51</file>
+      <file>$PROJ_DIR$\src\74LS164_8LED.h</file>
       <file>$TOOLKIT_DIR$\inc\ioCC2530.h</file>
-      <file>$PROJ_DIR$\LED\74LS164_8LED.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\recv.hex</file>
+      <file>$PROJ_DIR$\Debug\Obj\Drive.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\74LS164_8LED.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\Drive.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\74LS164_8LED.pbi</file>
+      <file>$PROJ_DIR$\src\Main.c</file>
+      <file>$PROJ_DIR$\src\Drive.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\Main.r51</file>
+      <file>$PROJ_DIR$\src\74LS164_8LED.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\Main.pbi</file>
+      <file>$PROJ_DIR$\Debug\Exe\recv.d51</file>
+      <file>$PROJ_DIR$\Debug\Obj\recv.pbd</file>
     </outputs>
     <file>
       <name>[ROOT_NODE]</name>
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 3 9</file>
+          <file> 14 4</file>
         </tool>
       </outputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\LED\74LS164_8LED.c</name>
+      <name>$PROJ_DIR$\src\Main.c</name>
       <outputs>
         <tool>
           <name>ICC8051</name>
-          <file> 7</file>
+          <file> 11</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 5</file>
+          <file> 13</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICC8051</name>
-          <file> 11 12</file>
+          <file> 3 2</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 11 12</file>
+          <file> 3 2</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\LED\Main.c</name>
+      <name>$PROJ_DIR$\src\Drive.c</name>
+      <outputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 5</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 7</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\src\74LS164_8LED.c</name>
       <outputs>
         <tool>
           <name>ICC8051</name>
@@ -61,41 +77,41 @@
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 4</file>
+          <file> 8</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICC8051</name>
-          <file> 11 12</file>
+          <file> 3 2</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 11 12</file>
+          <file> 3 2</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\Debug\Exe\receive.d51</name>
+      <name>$PROJ_DIR$\Debug\Exe\recv.d51</name>
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 9</file>
+          <file> 4</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>XLINK</name>
-          <file> 8 7 6 2</file>
+          <file> 0 6 5 11 1</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\Debug\Obj\receive.pbd</name>
+      <name>$PROJ_DIR$\Debug\Obj\recv.pbd</name>
       <inputs>
         <tool>
           <name>BILINK</name>
-          <file> 5 4</file>
+          <file> 8 7 13</file>
         </tool>
       </inputs>
     </file>

@@ -9,48 +9,42 @@
       <file>$PROJ_DIR$\01test.c</file>
       <file>$PROJ_DIR$\Debug\Obj\01test.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\01test.r51</file>
-      <file>$PROJ_DIR$\Debug\Exe\01test.hex</file>
-      <file>$TOOLKIT_DIR$\inc\ioCC2530.h</file>
-      <file>$TOOLKIT_DIR$\lib\clib\cl-pli-blxd-1e16x01.r51</file>
-      <file>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_CC2530F256_banked.xcl</file>
-      <file>$PROJ_DIR$\Debug\Exe\01test.d51</file>
       <file>$PROJ_DIR$\Debug\Obj\01test.pbd</file>
+      <file>$PROJ_DIR$\Debug\Exe\01test.d51</file>
+      <file>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_CC2530F256_banked.xcl</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl-pli-blxd-1e16x01.r51</file>
+      <file>$TOOLKIT_DIR$\inc\ioCC2530.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\01test.hex</file>
     </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 8 4</file>
+        </tool>
+      </outputs>
+    </file>
     <file>
       <name>$PROJ_DIR$\01test.c</name>
       <outputs>
         <tool>
-          <name>BICOMP</name>
-          <file> 1</file>
-        </tool>
-        <tool>
           <name>ICC8051</name>
           <file> 2</file>
         </tool>
-      </outputs>
-      <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 4</file>
-        </tool>
-        <tool>
-          <name>ICC8051</name>
-          <file> 4</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Debug\Exe\01test.d51</name>
-      <outputs>
-        <tool>
-          <name>XLINK</name>
-          <file> 3</file>
+          <file> 1</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>XLINK</name>
-          <file> 6 2 5</file>
+          <name>ICC8051</name>
+          <file> 7</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 7</file>
         </tool>
       </inputs>
     </file>
@@ -64,13 +58,19 @@
       </inputs>
     </file>
     <file>
-      <name>[ROOT_NODE]</name>
+      <name>$PROJ_DIR$\Debug\Exe\01test.d51</name>
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 7 3</file>
+          <file> 8</file>
         </tool>
       </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 5 2 6</file>
+        </tool>
+      </inputs>
     </file>
   </configuration>
   <configuration>
