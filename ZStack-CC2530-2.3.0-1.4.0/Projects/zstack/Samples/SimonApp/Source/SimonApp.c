@@ -22,7 +22,7 @@
   its documentation for any purpose.
 
   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
-  PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, 
+  PROVIDED “AS IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, 
   INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE, 
   NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
   TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
@@ -68,6 +68,8 @@
 
 #include "SimonApp.h"
 #include "DebugTrace.h"
+
+#include "modules/74LS164_8LED.h" 
 
 #if !defined( WIN32 )
   #include "OnBoard.h"
@@ -275,9 +277,27 @@ UINT16 SimonApp_ProcessEvent( byte task_id, UINT16 events )
               || (SimonApp_NwkState == DEV_END_DEVICE) )
           {
             // Start sending "the" message in a regular interval.
-            osal_start_timerEx( SimonApp_TaskID,
-                                SimonApp_SEND_MSG_EVT,
-                              SimonApp_SEND_MSG_TIMEOUT );
+//            osal_start_timerEx( SimonApp_TaskID,
+//                                SimonApp_SEND_MSG_EVT,
+//                              SimonApp_SEND_MSG_TIMEOUT );
+          }
+          
+          if(SimonApp_NwkState == DEV_ZB_COORD)
+          {
+            LS164_BYTE(11);
+       
+          }
+          
+          if(SimonApp_NwkState == DEV_ROUTER)
+          {
+             LS164_BYTE(12);
+            
+          }
+          
+          if(SimonApp_NwkState == DEV_END_DEVICE)
+          {
+            
+             LS164_BYTE(13);
           }
           break;
 

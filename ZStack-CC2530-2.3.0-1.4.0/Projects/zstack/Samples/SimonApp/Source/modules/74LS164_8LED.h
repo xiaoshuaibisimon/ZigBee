@@ -4,6 +4,6 @@
 #define  LS164_DATA  P1_3
 #define  LS164_CLK   P1_2
 #define  UCHAR  unsigned char 
-void LS164_Cfg();
+void LS164_Cfg(void);
 void LS164_BYTE(UCHAR Data);//P1.3  DATA   P1.2  CLK
 #endif

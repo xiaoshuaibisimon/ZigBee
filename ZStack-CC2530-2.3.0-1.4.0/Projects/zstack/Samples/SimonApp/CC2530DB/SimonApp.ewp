@@ -6370,6 +6370,9 @@
   <group>
     <name>App</name>
     <file>
+      <name>$PROJ_DIR$\..\Source\modules\74LS164_8LED.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\Source\OSAL_SimonApp.c</name>
     </file>
     <file>
@@ -6596,7 +6599,7 @@
           <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\mac_radio_defs.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\mac_radio_defs.h</name>
+          <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\mac\LOW_LEVEL\srf04\SINGLE_CHIP\mac_radio_defs.h</name>
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\mac_rffrontend.c</name>
@@ -6610,13 +6613,13 @@
       <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\DebugTrace.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\DebugTrace.h</name>
+      <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\mt\DebugTrace.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\MT.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\MT.h</name>
+      <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\mt\MT.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\MT_AF.c</name>
@@ -6655,7 +6658,7 @@
       <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\MT_SYS.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\MT_SYS.h</name>
+      <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\mt\MT_SYS.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\MT_TASK.c</name>
@@ -6685,7 +6688,7 @@
       <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\MT_ZDO.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\..\..\Components\mt\MT_ZDO.h</name>
+      <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\mt\MT_ZDO.h</name>
     </file>
   </group>
   <group>
@@ -6697,10 +6700,10 @@
       <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\stack\nwk\APS.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\..\..\Components\stack\nwk\aps_frag.h</name>
+      <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\stack\nwk\aps_frag.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\..\..\Components\stack\nwk\aps_groups.h</name>
+      <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\stack\nwk\aps_groups.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\..\Components\stack\nwk\aps_util.h</name>
@@ -6736,7 +6739,7 @@
       <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\stack\nwk\reflecttrack.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\..\..\Components\stack\nwk\rtg.h</name>
+      <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\stack\nwk\rtg.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\..\Components\stack\sys\ZGlobals.c</name>
@@ -6760,7 +6763,7 @@
       <name>$PROJ_DIR$\..\..\..\..\..\Components\osal\common\OSAL_Clock.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\..\..\Components\osal\include\OSAL_Clock.h</name>
+      <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\osal\include\OSAL_Clock.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\..\Components\osal\common\OSAL_Memory.c</name>
@@ -6874,7 +6877,7 @@
       <name>$PROJ_DIR$\..\..\..\..\..\Components\stack\zdo\ZDNwkMgr.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\stack\zdo\ZDNwkMgr.h</name>
+      <name>$PROJ_DIR$\..\..\..\..\..\Components\stack\zdo\ZDNwkMgr.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\..\Components\stack\zdo\ZDObject.c</name>
