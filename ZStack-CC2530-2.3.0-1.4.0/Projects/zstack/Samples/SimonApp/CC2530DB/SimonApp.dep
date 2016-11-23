@@ -2,7 +2,7 @@
 
 <project>
   <fileVersion>2</fileVersion>
-  <fileChecksum>2032097767</fileChecksum>
+  <fileChecksum>2899143255</fileChecksum>
   <configuration>
     <name>CoordinatorEB</name>
     <outputs>
@@ -3777,6 +3777,10 @@
         </tool>
       </inputs>
     </file>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
   </configuration>
   <configuration>
     <name>EndDeviceEB</name>

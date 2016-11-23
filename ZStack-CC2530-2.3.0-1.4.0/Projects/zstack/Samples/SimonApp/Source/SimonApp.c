@@ -289,6 +289,7 @@ UINT16 SimonApp_ProcessEvent( byte task_id, UINT16 events )
             osal_start_timerEx( SimonApp_TaskID,
                         SimonApp_SEND_MSG_EVT,
                       SimonApp_SEND_MSG_TIMEOUT );
+             
           }
           
           if(SimonApp_NwkState == DEV_ROUTER)
@@ -333,6 +334,15 @@ UINT16 SimonApp_ProcessEvent( byte task_id, UINT16 events )
 
     // return unprocessed events
     P0_1 = 0;//µãÁÁLED2
+    keyChange_t *msgPtr;
+    msgPtr = (keyChange_t *)osal_msg_allocate( sizeof(keyChange_t) );
+    if ( msgPtr )
+    {
+      msgPtr->hdr.event = KEY_CHANGE;
+       msgPtr->keys=3;
+    
+      osal_msg_send( SimonApp_TaskID, (uint8 *)msgPtr );
+    }
     return (events ^ SimonApp_SEND_MSG_EVT);
   }
 
@@ -411,6 +421,8 @@ void SimonApp_ProcessZDOMsgs( zdoIncomingMsg_t *inMsg )
 void SimonApp_HandleKeys( byte shift, byte keys )
 {
   zAddrType_t dstAddr;
+  
+  LS164_BYTE(keys);
   
   // Shift is used to make each button/switch dual purpose.
   if ( shift )
