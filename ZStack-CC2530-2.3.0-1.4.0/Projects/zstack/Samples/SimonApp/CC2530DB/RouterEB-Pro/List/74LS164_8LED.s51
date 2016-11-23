@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                            /
-// IAR C/C++ Compiler V8.10.3.10338/W32 for 8051        22/Nov/2016  20:48:15 /
+// IAR C/C++ Compiler V8.10.3.10338/W32 for 8051        23/Nov/2016  16:17:59 /
 // Copyright 2004-2011 IAR Systems AB.                                        /
 //                                                                            /
 //    Core               =  plain                                             /
@@ -44,12 +44,13 @@
 //                          2530-2.3.0-1.4.0\Projects\zstack\Samples\SimonApp /
 //                          \Source\modules\74LS164_8LED.c -D ZIGBEEPRO -D    /
 //                          ZTOOL_P1 -D MT_TASK -D MT_SYS_FUNC -D             /
-//                          MT_ZDO_FUNC -D LCD_SUPPORTED=DEBUG -lC            /
+//                          MT_ZDO_FUNC -D LCD_SUPPORTED=DEBUG -D NV_RESTORE  /
+//                          -D NV_INIT -lC F:\GitHub\ZigBee\ZStack-CC2530-2.3 /
+//                          .0-1.4.0\Projects\zstack\Samples\SimonApp\CC2530D /
+//                          B\RouterEB-Pro\List\ -lA                          /
 //                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projec /
 //                          ts\zstack\Samples\SimonApp\CC2530DB\RouterEB-Pro\ /
-//                          List\ -lA F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1. /
-//                          4.0\Projects\zstack\Samples\SimonApp\CC2530DB\Rou /
-//                          terEB-Pro\List\ --diag_suppress Pe001,Pa010 -o    /
+//                          List\ --diag_suppress Pe001,Pa010 -o              /
 //                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projec /
 //                          ts\zstack\Samples\SimonApp\CC2530DB\RouterEB-Pro\ /
 //                          Obj\ -e --debug --core=plain --dptr=16,1          /
@@ -156,6 +157,8 @@
         FUNCTION ??LS164_BYTE?relay,0203H
         PUBLIC ??LS164_Cfg?relay
         FUNCTION ??LS164_Cfg?relay,0203H
+        PUBLIC ??Led_Init?relay
+        FUNCTION ??Led_Init?relay,0203H
         PUBLIC LS164_BYTE
         FUNCTION LS164_BYTE,0203H
         ARGFRAME XSTACK, 0, STACK
@@ -163,8 +166,14 @@
         PUBLIC LS164_Cfg
         FUNCTION LS164_Cfg,0203H
         ARGFRAME XSTACK, 0, STACK
+        PUBLIC Led_Init
+        FUNCTION Led_Init,0203H
+        ARGFRAME XSTACK, 0, STACK
+        PUBWEAK P0DIR
+        PUBWEAK P0SEL
         PUBWEAK P1DIR
         PUBWEAK P1SEL
+        PUBWEAK _A_P0
         PUBWEAK _A_P1
         
         CFI Names cfiNames0
@@ -259,9 +268,17 @@ LS164_BYTE          SYMBOL "LS164_BYTE"
 ??LS164_BYTE?relay  SYMBOL "?relay", LS164_BYTE
 LS164_Cfg           SYMBOL "LS164_Cfg"
 ??LS164_Cfg?relay   SYMBOL "?relay", LS164_Cfg
+Led_Init            SYMBOL "Led_Init"
+??Led_Init?relay    SYMBOL "?relay", Led_Init
 
 // F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\Samples\SimonApp\Source\modules\74LS164_8LED.c
 //    1 #include<ioCC2530.h>
+
+        ASEGN SFR_AN:DATA:NOROOT,080H
+// union <unnamed> volatile __sfr _A_P0
+_A_P0:
+        DATA8
+        DS 1
 
         ASEGN SFR_AN:DATA:NOROOT,090H
 // union <unnamed> volatile __sfr _A_P1
@@ -269,9 +286,21 @@ _A_P1:
         DATA8
         DS 1
 
+        ASEGN SFR_AN:DATA:NOROOT,0f3H
+// unsigned char volatile __sfr P0SEL
+P0SEL:
+        DATA8
+        DS 1
+
         ASEGN SFR_AN:DATA:NOROOT,0f4H
 // unsigned char volatile __sfr P1SEL
 P1SEL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0fdH
+// unsigned char volatile __sfr P0DIR
+P0DIR:
         DATA8
         DS 1
 
@@ -385,6 +414,30 @@ LS164_BYTE:
         LJMP    ?BANKED_LEAVE_XDATA
         CFI EndBlock cfiBlock1
         REQUIRE _A_P1
+//   33 
+//   34 /*∞Â‘ÿLED2≥ı ºªØ*/
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   35 void Led_Init(void)
+Led_Init:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI Function Led_Init
+        CODE
+//   36 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//   37     P0SEL &= ~0x02;
+        ANL     0xf3,#0xfd
+//   38     P0DIR |= 0x02;
+        ORL     0xfd,#0x2
+//   39     P0_1 = 1;
+        SETB    0x80.1
+//   40 }
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock2
+        REQUIRE P0SEL
+        REQUIRE P0DIR
+        REQUIRE _A_P0
 
         RSEG XDATA_ID:CODE:NOROOT(0)
 `?<Initializer for LED_Map>`:
@@ -416,17 +469,24 @@ LS164_BYTE:
         DATA
         DC24    LS164_BYTE
 
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??Led_Init?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    Led_Init
+
         END
+//   41 
 // 
-// 59 bytes in segment BANKED_CODE
-// 12 bytes in segment BANK_RELAYS
-//  3 bytes in segment SFR_AN
+// 70 bytes in segment BANKED_CODE
+// 18 bytes in segment BANK_RELAYS
+//  6 bytes in segment SFR_AN
 // 14 bytes in segment XDATA_I
 // 14 bytes in segment XDATA_ID
 // 
-// 85 bytes of CODE  memory
-//  0 bytes of DATA  memory (+ 3 bytes shared)
-// 14 bytes of XDATA memory
+// 102 bytes of CODE  memory
+//   0 bytes of DATA  memory (+ 6 bytes shared)
+//  14 bytes of XDATA memory
 //
 //Errors: none
 //Warnings: none

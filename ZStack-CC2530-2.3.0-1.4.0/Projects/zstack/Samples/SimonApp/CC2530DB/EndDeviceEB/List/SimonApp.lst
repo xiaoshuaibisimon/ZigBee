@@ -1,0 +1,1422 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         23/Nov/2016  13:45:30 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\Source\SimonApp.c        #
+#    Command line       =  -f F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Proj #
+#                          ects\zstack\Samples\SimonApp\CC2530DB\..\..\..\Too #
+#                          ls\CC2530DB\f8wEndev.cfg (-DCPU32MHZ               #
+#                          -DROOT=__near_func -DBLINK_LEDS) -f                #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\Tools\ #
+#                          CC2530DB\f8wConfig.cfg (-DSECURE=0                 #
+#                          -DZG_SECURE_DYNAMIC=0 -DREFLECTOR                  #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE     #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100) -DREJOIN_POLL_RATE=440   #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\Source\SimonApp.c -D     #
+#                          NWK_AUTO_POLL -D ZTOOL_P1 -D MT_TASK -D            #
+#                          MT_SYS_FUNC -D MT_ZDO_FUNC -D LCD_SUPPORTED=DEBUG  #
+#                          -D xPOWER_SAVING -lC F:\GitHub\ZigBee\ZStack-CC253 #
+#                          0-2.3.0-1.4.0\Projects\zstack\Samples\SimonApp\CC2 #
+#                          530DB\EndDeviceEB\List\ -lA                        #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\EndDeviceEB\Lis #
+#                          t\ --diag_suppress Pe001,Pa010 -o                  #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\EndDeviceEB\Obj #
+#                          \ -e --debug --core=plain --dptr=16,1              #
+#                          --data_model=large --code_model=banked             #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data_rom --nr_virtual_regs 16    #
+#                          -I F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Proj #
+#                          ects\zstack\Samples\SimonApp\CC2530DB\ -I          #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\SOURCE\ -I   #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\ZMAIN\ #
+#                          TI2530DB\ -I F:\GitHub\ZigBee\ZStack-CC2530-2.3.0- #
+#                          1.4.0\Projects\zstack\Samples\SimonApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\MT\ -I                     #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\HAL\INCLUDE\ -I                         #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\HAL\TARGET\CC2530EB\ -I                 #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\OSAL\MCU\CCSOC\ -I                      #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\OSAL\INCLUDE\ -I                        #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\STACK\AF\ -I F:\GitHub\ZigBee\ZStack-CC #
+#                          2530-2.3.0-1.4.0\Projects\zstack\Samples\SimonApp\ #
+#                          CC2530DB\..\..\..\..\..\COMPONENTS\STACK\NWK\ -I   #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\STACK\SEC\ -I                           #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\STACK\SAPI\ -I                          #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\STACK\SYS\ -I                           #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\STACK\ZDO\ -I                           #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\ZMAC\F8W\ -I F:\GitHub\ZigBee\ZStack-CC #
+#                          2530-2.3.0-1.4.0\Projects\zstack\Samples\SimonApp\ #
+#                          CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\ -I        #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\SERVICES\SADDR\ -I                      #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\SERVICES\SDATA\ -I                      #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\MAC\INCLUDE\ -I                         #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\MAC\HIGH_LEVEL\ -I                      #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\MAC\LOW_LEVEL\srf04\ -I                 #
+#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\MAC\LOW_LEVEL\srf04\SINGLE_CHIP\ -Ohz   #
+#                          --require_prototypes                               #
+#    List file          =  F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\EndDeviceEB\Lis #
+#                          t\SimonApp.lst                                     #
+#    Object file        =  F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SimonApp\CC2530DB\EndDeviceEB\Obj #
+#                          \SimonApp.r51                                      #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\Samples\SimonApp\Source\SimonApp.c
+      1          /**************************************************************************************************
+      2            Filename:       SimonApp.c
+      3            Revised:        $Date: 2009-03-18 15:56:27 -0700 (Wed, 18 Mar 2009) $
+      4            Revision:       $Revision: 19453 $
+      5          
+      6            Description:    Generic Application (no Profile).
+      7          
+      8          
+      9            Copyright 2004-2009 Texas Instruments Incorporated. All rights reserved.
+     10          
+     11            IMPORTANT: Your use of this Software is limited to those specific rights
+     12            granted under the terms of a software license agreement between the user
+     13            who downloaded the software, his/her employer (which must be your employer)
+     14            and Texas Instruments Incorporated (the "License").  You may not use this
+     15            Software unless you agree to abide by the terms of the License. The License
+     16            limits your use, and you acknowledge, that the Software may not be modified,
+     17            copied or distributed unless embedded on a Texas Instruments microcontroller
+     18            or used solely and exclusively in conjunction with a Texas Instruments radio
+     19            frequency transceiver, which is integrated into your product.  Other than for
+     20            the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     21            works of, modify, distribute, perform, display or sell this Software and/or
+     22            its documentation for any purpose.
+     23          
+     24            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     25            PROVIDED “AS IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, 
+     26            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE, 
+     27            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     28            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     29            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     30            LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     31            INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     32            OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     33            OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     34            (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     35          
+     36            Should you have any questions regarding your right to use this Software,
+     37            contact Texas Instruments Incorporated at www.TI.com. 
+     38          **************************************************************************************************/
+     39          
+     40          /*********************************************************************
+     41            This application isn't intended to do anything useful, it is
+     42            intended to be a simple example of an application's structure.
+     43          
+     44            This application sends "Hello World" to another "Generic"
+     45            application every 15 seconds.  The application will also
+     46            receive "Hello World" packets.
+     47          
+     48            The "Hello World" messages are sent/received as MSG type message.
+     49          
+     50            This applications doesn't have a profile, so it handles everything
+     51            directly - itself.
+     52          
+     53            Key control:
+     54              SW1:
+     55              SW2:  initiates end device binding
+     56              SW3:
+     57              SW4:  initiates a match description request
+     58          *********************************************************************/
+     59          
+     60          /*********************************************************************
+     61           * INCLUDES
+     62           */
+     63          #include "OSAL.h"
+     64          #include "AF.h"
+     65          #include "ZDApp.h"
+     66          #include "ZDObject.h"
+     67          #include "ZDProfile.h"
+     68          
+     69          #include "SimonApp.h"
+     70          #include "DebugTrace.h"
+     71          
+     72          #include "modules/74LS164_8LED.h" 
+     73          
+     74          #if !defined( WIN32 )
+     75            #include "OnBoard.h"
+     76          #endif
+     77          
+     78          /* HAL */
+     79          #include "hal_lcd.h"
+     80          #include "hal_led.h"
+     81          #include "hal_key.h"
+     82          #include "hal_uart.h"
+     83          
+     84          /*********************************************************************
+     85           * MACROS
+     86           */
+     87          
+     88          /*********************************************************************
+     89           * CONSTANTS
+     90           */
+     91          
+     92          /*********************************************************************
+     93           * TYPEDEFS
+     94           */
+     95          
+     96          /*********************************************************************
+     97           * GLOBAL VARIABLES
+     98           */
+     99          
+    100          // This list should be filled with Application specific Cluster IDs.
+
+   \                                 In  segment XDATA_ROM_C, align 1
+    101          const cId_t SimonApp_ClusterList[SimonApp_MAX_CLUSTERS] =
+   \                     SimonApp_ClusterList:
+   \   000000   0100         DW 1
+    102          {
+    103            SimonApp_CLUSTERID
+    104          };
+    105          
+
+   \                                 In  segment XDATA_ROM_C, align 1
+    106          const SimpleDescriptionFormat_t SimonApp_SimpleDesc =
+   \                     SimonApp_SimpleDesc:
+   \   000000   0A           DB 10
+   \   000001   040F         DW 3844
+   \   000003   0100         DW 1
+   \   000005   00           DB 0
+   \   000006   01           DB 1
+   \   000007   ....         DW SimonApp_ClusterList
+   \   000009   01           DB 1
+   \   00000A   ....         DW SimonApp_ClusterList
+    107          {
+    108            SimonApp_ENDPOINT,              //  int Endpoint;
+    109            SimonApp_PROFID,                //  uint16 AppProfId[2];
+    110            SimonApp_DEVICEID,              //  uint16 AppDeviceId[2];
+    111            SimonApp_DEVICE_VERSION,        //  int   AppDevVer:4;
+    112            SimonApp_FLAGS,                 //  int   AppFlags:4;
+    113            SimonApp_MAX_CLUSTERS,          //  byte  AppNumInClusters;
+    114            (cId_t *)SimonApp_ClusterList,  //  byte *pAppInClusterList;
+    115            SimonApp_MAX_CLUSTERS,          //  byte  AppNumInClusters;
+    116            (cId_t *)SimonApp_ClusterList   //  byte *pAppInClusterList;
+    117          };
+    118          
+    119          // This is the Endpoint/Interface description.  It is defined here, but
+    120          // filled-in in SimonApp_Init().  Another way to go would be to fill
+    121          // in the structure here and make it a "const" (in code space).  The
+    122          // way it's defined in this sample app it is define in RAM.
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    123          endPointDesc_t SimonApp_epDesc;
+   \                     SimonApp_epDesc:
+   \   000000                DS 6
+   \   000006                REQUIRE __INIT_XDATA_Z
+    124          
+    125          /*********************************************************************
+    126           * EXTERNAL VARIABLES
+    127           */
+    128          
+    129          /*********************************************************************
+    130           * EXTERNAL FUNCTIONS
+    131           */
+    132          
+    133          /*********************************************************************
+    134           * LOCAL VARIABLES
+    135           */
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    136          byte SimonApp_TaskID;   // Task ID for internal task/event processing
+   \                     SimonApp_TaskID:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+    137                                    // This variable will be received when
+    138                                    // SimonApp_Init() is called.
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    139          devStates_t SimonApp_NwkState;
+   \                     SimonApp_NwkState:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+    140          
+    141          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    142          byte SimonApp_TransID;  // This is the unique message ID (counter)
+   \                     SimonApp_TransID:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+    143          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    144          afAddrType_t SimonApp_DstAddr;
+   \                     SimonApp_DstAddr:
+   \   000000                DS 12
+   \   00000C                REQUIRE __INIT_XDATA_Z
+    145          
+    146          /*added by Simon*/
+    147          #define UART_MAX 128
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    148          unsigned char uartbuf[UART_MAX]={0};
+   \                     uartbuf:
+   \   000000                DS 128
+   \   000080                REQUIRE __INIT_XDATA_Z
+    149          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    150          uint8 DEV_FLAG=0;
+   \                     DEV_FLAG:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+    151          
+    152          
+    153          /*********************************************************************
+    154           * LOCAL FUNCTIONS
+    155           */
+    156          void SimonApp_ProcessZDOMsgs( zdoIncomingMsg_t *inMsg );
+    157          void SimonApp_HandleKeys( byte shift, byte keys );
+    158          void SimonApp_MessageMSGCB( afIncomingMSGPacket_t *pckt );
+    159          void SimonApp_SendTheMessage( void );
+    160          
+    161          /*added by Simon*/
+    162          static void rxCB(uint8 port,uint8 event); 
+    163          
+    164          /*********************************************************************
+    165           * NETWORK LAYER CALLBACKS
+    166           */
+    167          
+    168          /*********************************************************************
+    169           * PUBLIC FUNCTIONS
+    170           */
+    171          
+    172          /*********************************************************************
+    173           * @fn      SimonApp_Init
+    174           *
+    175           * @brief   Initialization function for the Generic App Task.
+    176           *          This is called during initialization and should contain
+    177           *          any application specific initialization (ie. hardware
+    178           *          initialization/setup, table initialization, power up
+    179           *          notificaiton ... ).
+    180           *
+    181           * @param   task_id - the ID assigned by OSAL.  This ID should be
+    182           *                    used to send messages and set timers.
+    183           *
+    184           * @return  none
+    185           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    186          void SimonApp_Init( byte task_id )
+   \                     SimonApp_Init:
+    187          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 29
+   \   000005   74E3         MOV     A,#-0x1d
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   E9           MOV     A,R1
+    188            SimonApp_TaskID = task_id;
+   \   00000B   90....       MOV     DPTR,#SimonApp_TaskID
+   \   00000E   F0           MOVX    @DPTR,A
+    189            SimonApp_NwkState = DEV_INIT;
+   \   00000F   90....       MOV     DPTR,#SimonApp_NwkState
+   \   000012   7401         MOV     A,#0x1
+   \   000014   F0           MOVX    @DPTR,A
+    190            SimonApp_TransID = 0;
+   \   000015   90....       MOV     DPTR,#SimonApp_TransID
+   \   000018   E4           CLR     A
+   \   000019   F0           MOVX    @DPTR,A
+    191            
+    192            /*added by Simon*/
+    193            halUARTCfg_t uartConfig;
+    194            
+    195          
+    196            // Device hardware initialization can be added here or in main() (Zmain.c).
+    197            // If the hardware is application specific - add it here.
+    198            // If the hardware is other parts of the device add it in main().
+    199          
+    200            SimonApp_DstAddr.addrMode = (afAddrMode_t)AddrNotPresent;
+   \   00001A   90....       MOV     DPTR,#SimonApp_DstAddr + 8
+   \   00001D   F0           MOVX    @DPTR,A
+    201            SimonApp_DstAddr.endPoint = 0;
+   \   00001E   A3           INC     DPTR
+   \   00001F   F0           MOVX    @DPTR,A
+    202            SimonApp_DstAddr.addr.shortAddr = 0;
+   \   000020   90....       MOV     DPTR,#SimonApp_DstAddr
+   \   000023   F0           MOVX    @DPTR,A
+   \   000024   A3           INC     DPTR
+   \   000025   F0           MOVX    @DPTR,A
+    203          
+    204            // Fill out the endpoint description.
+    205            SimonApp_epDesc.endPoint = SimonApp_ENDPOINT;
+   \   000026   90....       MOV     DPTR,#SimonApp_epDesc
+   \   000029   740A         MOV     A,#0xa
+   \   00002B   F0           MOVX    @DPTR,A
+    206            SimonApp_epDesc.task_id = &SimonApp_TaskID;
+   \   00002C   A3           INC     DPTR
+   \   00002D   74..         MOV     A,#SimonApp_TaskID & 0xff
+   \   00002F   F0           MOVX    @DPTR,A
+   \   000030   A3           INC     DPTR
+   \   000031   74..         MOV     A,#(SimonApp_TaskID >> 8) & 0xff
+   \   000033   F0           MOVX    @DPTR,A
+    207            SimonApp_epDesc.simpleDesc
+    208                      = (SimpleDescriptionFormat_t *)&SimonApp_SimpleDesc;
+   \   000034   A3           INC     DPTR
+   \   000035   74..         MOV     A,#SimonApp_SimpleDesc & 0xff
+   \   000037   F0           MOVX    @DPTR,A
+   \   000038   A3           INC     DPTR
+   \   000039   74..         MOV     A,#(SimonApp_SimpleDesc >> 8) & 0xff
+   \   00003B   F0           MOVX    @DPTR,A
+    209            SimonApp_epDesc.latencyReq = noLatencyReqs;
+   \   00003C   A3           INC     DPTR
+   \   00003D   E4           CLR     A
+   \   00003E   F0           MOVX    @DPTR,A
+    210          
+    211            // Register the endpoint description with the AF
+    212            afRegister( &SimonApp_epDesc );
+   \   00003F                ; Setup parameters for call to function afRegister
+   \   00003F   7A..         MOV     R2,#SimonApp_epDesc & 0xff
+   \   000041   7B..         MOV     R3,#(SimonApp_epDesc >> 8) & 0xff
+   \   000043   12....       LCALL   ??afRegister?relay
+    213            
+    214            /*added by Simon*/
+    215            uartConfig.configured = TRUE;
+   \   000046   85..82       MOV     DPL,?XSP + 0
+   \   000049   85..83       MOV     DPH,?XSP + 1
+   \   00004C   7401         MOV     A,#0x1
+   \   00004E   F0           MOVX    @DPTR,A
+    216            uartConfig.baudRate = HAL_UART_BR_115200;
+   \   00004F   12....       LCALL   ?XSTACK_DISP0_8
+   \   000052   7404         MOV     A,#0x4
+   \   000054   F0           MOVX    @DPTR,A
+    217            uartConfig.flowControl = FALSE;
+   \   000055   7402         MOV     A,#0x2
+   \   000057   12....       LCALL   ?XSTACK_DISP0_8
+   \   00005A   E4           CLR     A
+   \   00005B   F0           MOVX    @DPTR,A
+    218            uartConfig.callBackFunc = rxCB;
+   \   00005C   741B         MOV     A,#0x1b
+   \   00005E   12....       LCALL   ?XSTACK_DISP0_8
+   \   000061   74..         MOV     A,#??rxCB?relay & 0xff
+   \   000063   F0           MOVX    @DPTR,A
+   \   000064   A3           INC     DPTR
+   \   000065   74..         MOV     A,#(??rxCB?relay >> 8) & 0xff
+   \   000067   F0           MOVX    @DPTR,A
+    219            HalUARTOpen(0,&uartConfig);
+   \   000068                ; Setup parameters for call to function HalUARTOpen
+   \   000068   85..82       MOV     DPL,?XSP + 0
+   \   00006B   85..83       MOV     DPH,?XSP + 1
+   \   00006E   AA82         MOV     R2,DPL
+   \   000070   AB83         MOV     R3,DPH
+   \   000072   7900         MOV     R1,#0x0
+   \   000074   12....       LCALL   ??HalUARTOpen?relay
+    220          
+    221            // Register for all key events - This app will handle all key events
+    222            RegisterForKeys( SimonApp_TaskID );
+   \   000077                ; Setup parameters for call to function RegisterForKeys
+   \   000077   90....       MOV     DPTR,#SimonApp_TaskID
+   \   00007A   E0           MOVX    A,@DPTR
+   \   00007B   F9           MOV     R1,A
+   \   00007C   12....       LCALL   ??RegisterForKeys?relay
+    223          
+    224            // Update the display
+    225          #if defined ( LCD_SUPPORTED )
+    226              HalLcdWriteString( "SimonApp", HAL_LCD_LINE_1 );
+   \   00007F                ; Setup parameters for call to function HalLcdWriteString
+   \   00007F   7901         MOV     R1,#0x1
+   \   000081   7A..         MOV     R2,#`?<Constant "SimonApp">` & 0xff
+   \   000083   7B..         MOV     R3,#(`?<Constant "SimonApp">` >> 8) & 0xff
+   \   000085   12....       LCALL   ??HalLcdWriteString?relay
+    227          #endif
+    228              
+    229            ZDO_RegisterForZDOMsg( SimonApp_TaskID, End_Device_Bind_rsp );
+   \   000088                ; Setup parameters for call to function ZDO_RegisterForZDOMsg
+   \   000088   7A20         MOV     R2,#0x20
+   \   00008A   7B80         MOV     R3,#-0x80
+   \   00008C   90....       MOV     DPTR,#SimonApp_TaskID
+   \   00008F   E0           MOVX    A,@DPTR
+   \   000090   F9           MOV     R1,A
+   \   000091   12....       LCALL   ??ZDO_RegisterForZDOMsg?relay
+    230            ZDO_RegisterForZDOMsg( SimonApp_TaskID, Match_Desc_rsp );
+   \   000094                ; Setup parameters for call to function ZDO_RegisterForZDOMsg
+   \   000094   7A06         MOV     R2,#0x6
+   \   000096   7B80         MOV     R3,#-0x80
+   \   000098   90....       MOV     DPTR,#SimonApp_TaskID
+   \   00009B   E0           MOVX    A,@DPTR
+   \   00009C   F9           MOV     R1,A
+   \   00009D   12....       LCALL   ??ZDO_RegisterForZDOMsg?relay
+    231          }
+   \   0000A0   741D         MOV     A,#0x1d
+   \   0000A2   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0000A5                REQUIRE ?Subroutine0
+   \   0000A5                ; // Fall through to label ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   7F01         MOV     R7,#0x1
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+    232          
+    233          /*********************************************************************
+    234           * @fn      SimonApp_ProcessEvent
+    235           *
+    236           * @brief   Generic Application Task event processor.  This function
+    237           *          is called to process all events for the task.  Events
+    238           *          include timers, messages and any other user defined events.
+    239           *
+    240           * @param   task_id  - The OSAL assigned task ID.
+    241           * @param   events - events to process.  This is a bit map and can
+    242           *                   contain more than one event.
+    243           *
+    244           * @return  none
+    245           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    246          UINT16 SimonApp_ProcessEvent( byte task_id, UINT16 events )
+   \                     SimonApp_ProcessEvent:
+    247          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 0
+   \   000005   8A..         MOV     ?V0 + 0,R2
+   \   000007   8B..         MOV     ?V0 + 1,R3
+    248            afIncomingMSGPacket_t *MSGpkt;
+    249            afDataConfirm_t *afDataConfirm;
+    250          
+    251            // Data Confirmation message fields
+    252            byte sentEP;
+    253            ZStatus_t sentStatus;
+    254            byte sentTransID;       // This should match the value sent
+    255            (void)task_id;  // Intentionally unreferenced parameter
+    256          
+    257            if ( events & SYS_EVENT_MSG )
+   \   000009   EB           MOV     A,R3
+   \   00000A   5480         ANL     A,#0x80
+   \   00000C   7003         JNZ     $+5
+   \   00000E   02....       LJMP    ??SimonApp_ProcessEvent_0 & 0xFFFF
+    258            {
+    259              MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive( SimonApp_TaskID );
+   \   000011                ; Setup parameters for call to function osal_msg_receive
+   \   000011   8042         SJMP    ??SimonApp_ProcessEvent_1
+    260              while ( MSGpkt )
+    261              {
+    262                switch ( MSGpkt->hdr.event )
+    263                {
+    264                  case ZDO_CB_MSG:
+    265                    SimonApp_ProcessZDOMsgs( (zdoIncomingMsg_t *)MSGpkt );
+    266                    break;
+    267                    
+    268                  case KEY_CHANGE:
+    269                    SimonApp_HandleKeys( ((keyChange_t *)MSGpkt)->state, ((keyChange_t *)MSGpkt)->keys );
+    270                    break;
+    271          
+    272                  case AF_DATA_CONFIRM_CMD:
+    273                    // This message is received as a confirmation of a data packet sent.
+    274                    // The status is of ZStatus_t type [defined in ZComDef.h]
+    275                    // The message fields are defined in AF.h
+    276                    afDataConfirm = (afDataConfirm_t *)MSGpkt;
+    277                    sentEP = afDataConfirm->endpoint;
+    278                    sentStatus = afDataConfirm->hdr.status;
+    279                    sentTransID = afDataConfirm->transID;
+    280                    (void)sentEP;
+    281                    (void)sentTransID;
+    282          
+    283                    // Action taken when confirmation is received.
+    284                    if ( sentStatus != ZSuccess )
+    285                    {
+    286                      // The data wasn't delivered -- Do something
+    287                    }
+    288                    break;
+    289          
+    290                  case AF_INCOMING_MSG_CMD:
+    291                    SimonApp_MessageMSGCB( MSGpkt );
+    292                    break;
+    293          
+    294                  case ZDO_STATE_CHANGE:
+    295                    SimonApp_NwkState = (devStates_t)(MSGpkt->hdr.status);
+   \                     ??SimonApp_ProcessEvent_2:
+   \   000013   A3           INC     DPTR
+   \   000014   E0           MOVX    A,@DPTR
+   \   000015   90....       MOV     DPTR,#SimonApp_NwkState
+   \   000018   F0           MOVX    @DPTR,A
+    296                    if ( (SimonApp_NwkState == DEV_ZB_COORD)
+    297                        || (SimonApp_NwkState == DEV_ROUTER)
+    298                        || (SimonApp_NwkState == DEV_END_DEVICE) )
+    299                    {
+    300                      // Start sending "the" message in a regular interval.
+    301          //            osal_start_timerEx( SimonApp_TaskID,
+    302          //                                SimonApp_SEND_MSG_EVT,
+    303          //                              SimonApp_SEND_MSG_TIMEOUT );
+    304                    }
+    305                    
+    306                    if(SimonApp_NwkState == DEV_ZB_COORD)
+   \   000019   6409         XRL     A,#0x9
+   \   00001B   700B         JNZ     ??SimonApp_ProcessEvent_3
+    307                    {
+    308                      DEV_FLAG = 1;//1-->Cordinator
+   \   00001D   90....       MOV     DPTR,#DEV_FLAG
+   \   000020   7401         MOV     A,#0x1
+   \   000022   F0           MOVX    @DPTR,A
+    309                      LS164_BYTE(11);
+   \   000023                ; Setup parameters for call to function LS164_BYTE
+   \   000023   790B         MOV     R1,#0xb
+   \   000025   12....       LCALL   ??LS164_BYTE?relay
+    310                      //osal_set_event(SimonApp_TaskID,SimonApp_SEND_MSG_EVT);
+    311          //            osal_start_timerEx( SimonApp_TaskID,
+    312          //                        SimonApp_SEND_MSG_EVT,
+    313          //                      SimonApp_SEND_MSG_TIMEOUT );
+    314                       
+    315                    }
+    316                    
+    317                    if(SimonApp_NwkState == DEV_ROUTER)
+   \                     ??SimonApp_ProcessEvent_3:
+   \   000028   90....       MOV     DPTR,#SimonApp_NwkState
+   \   00002B   E0           MOVX    A,@DPTR
+   \   00002C   6407         XRL     A,#0x7
+   \   00002E   700B         JNZ     ??SimonApp_ProcessEvent_4
+    318                    {
+    319                      DEV_FLAG = 2;//2-->Router
+   \   000030   90....       MOV     DPTR,#DEV_FLAG
+   \   000033   7402         MOV     A,#0x2
+   \   000035   F0           MOVX    @DPTR,A
+    320                       LS164_BYTE(12);
+   \   000036                ; Setup parameters for call to function LS164_BYTE
+   \   000036   790C         MOV     R1,#0xc
+   \   000038   12....       LCALL   ??LS164_BYTE?relay
+    321                      
+    322                    }
+    323                    
+    324                    if(SimonApp_NwkState == DEV_END_DEVICE)
+   \                     ??SimonApp_ProcessEvent_4:
+   \   00003B   90....       MOV     DPTR,#SimonApp_NwkState
+   \   00003E   E0           MOVX    A,@DPTR
+   \   00003F   6406         XRL     A,#0x6
+   \   000041   700B         JNZ     ??SimonApp_ProcessEvent_5
+    325                    {
+    326                       DEV_FLAG = 3;//3-->EndDevice
+   \   000043   90....       MOV     DPTR,#DEV_FLAG
+   \   000046   7403         MOV     A,#0x3
+   \   000048   F0           MOVX    @DPTR,A
+    327                       LS164_BYTE(13);
+   \   000049                ; Setup parameters for call to function LS164_BYTE
+   \   000049   790D         MOV     R1,#0xd
+   \                     ??SimonApp_ProcessEvent_6:
+   \   00004B   12....       LCALL   ??LS164_BYTE?relay
+    328                    }
+    329                    break;
+    330          
+    331                  default:
+    332                    break;
+    333                }
+    334          
+    335                // Release the memory
+    336                osal_msg_deallocate( (uint8 *)MSGpkt );
+   \                     ??SimonApp_ProcessEvent_5:
+   \   00004E                ; Setup parameters for call to function osal_msg_deallocate
+   \   00004E   EE           MOV     A,R6
+   \   00004F   FA           MOV     R2,A
+   \   000050   EF           MOV     A,R7
+   \   000051   FB           MOV     R3,A
+   \   000052   12....       LCALL   ??osal_msg_deallocate?relay
+    337          
+    338                // Next
+    339                MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive( SimonApp_TaskID );
+   \   000055                ; Setup parameters for call to function osal_msg_receive
+   \                     ??SimonApp_ProcessEvent_1:
+   \   000055   90....       MOV     DPTR,#SimonApp_TaskID
+   \   000058   E0           MOVX    A,@DPTR
+   \   000059   F9           MOV     R1,A
+   \   00005A   12....       LCALL   ??osal_msg_receive?relay
+   \   00005D   8A..         MOV     ?V0 + 2,R2
+   \   00005F   8B..         MOV     ?V0 + 3,R3
+   \   000061   AE..         MOV     R6,?V0 + 2
+   \   000063   AF..         MOV     R7,?V0 + 3
+   \   000065   EE           MOV     A,R6
+   \   000066   4F           ORL     A,R7
+   \   000067   602E         JZ      ??SimonApp_ProcessEvent_7
+   \   000069   8E82         MOV     DPL,R6
+   \   00006B   8F83         MOV     DPH,R7
+   \   00006D   E0           MOVX    A,@DPTR
+   \   00006E   24E6         ADD     A,#-0x1a
+   \   000070   601C         JZ      ??SimonApp_ProcessEvent_8
+   \   000072   245A         ADD     A,#0x5a
+   \   000074   6011         JZ      ??SimonApp_ProcessEvent_9
+   \   000076   24EF         ADD     A,#-0x11
+   \   000078   6099         JZ      ??SimonApp_ProcessEvent_2
+   \   00007A   24FE         ADD     A,#-0x2
+   \   00007C   70D0         JNZ     ??SimonApp_ProcessEvent_5
+   \   00007E                ; Setup parameters for call to function SimonApp_ProcessZDOMsgs
+   \   00007E   EE           MOV     A,R6
+   \   00007F   FA           MOV     R2,A
+   \   000080   EF           MOV     A,R7
+   \   000081   FB           MOV     R3,A
+   \   000082   12....       LCALL   ??SimonApp_ProcessZDOMsgs?relay
+   \   000085   80C7         SJMP    ??SimonApp_ProcessEvent_5
+   \                     ??SimonApp_ProcessEvent_9:
+   \   000087                ; Setup parameters for call to function LS164_BYTE
+   \   000087   A3           INC     DPTR
+   \   000088   A3           INC     DPTR
+   \   000089   A3           INC     DPTR
+   \   00008A   E0           MOVX    A,@DPTR
+   \   00008B   F9           MOV     R1,A
+   \   00008C   80BD         SJMP    ??SimonApp_ProcessEvent_6
+   \                     ??SimonApp_ProcessEvent_8:
+   \   00008E                ; Setup parameters for call to function SimonApp_MessageMSGCB
+   \   00008E   EE           MOV     A,R6
+   \   00008F   FA           MOV     R2,A
+   \   000090   EF           MOV     A,R7
+   \   000091   FB           MOV     R3,A
+   \   000092   12....       LCALL   ??SimonApp_MessageMSGCB?relay
+   \   000095   80B7         SJMP    ??SimonApp_ProcessEvent_5
+    340              }
+    341          
+    342              // return unprocessed events
+    343              return (events ^ SYS_EVENT_MSG);
+   \                     ??SimonApp_ProcessEvent_7:
+   \   000097   AA..         MOV     R2,?V0 + 0
+   \   000099   E5..         MOV     A,?V0 + 1
+   \   00009B   6480         XRL     A,#0x80
+   \   00009D   FB           MOV     R3,A
+   \   00009E   8015         SJMP    ??SimonApp_ProcessEvent_10
+    344            }
+    345          
+    346            // Send a message out - This event is generated by a timer
+    347            //  (setup in SimonApp_Init()).
+    348            if ( events & SimonApp_SEND_MSG_EVT )
+   \                     ??SimonApp_ProcessEvent_0:
+   \   0000A0   EA           MOV     A,R2
+   \   0000A1   A2E0         MOV     C,0xE0 /* A   */.0
+   \   0000A3   500C         JNC     ??SimonApp_ProcessEvent_11
+    349            {
+    350              // Send "the" message
+    351              SimonApp_SendTheMessage();
+   \   0000A5                ; Setup parameters for call to function SimonApp_SendTheMessage
+   \   0000A5   12....       LCALL   ??SimonApp_SendTheMessage?relay
+    352          
+    353              // Setup to send message again
+    354              //osal_start_timerEx( SimonApp_TaskID,
+    355          //                        SimonApp_SEND_MSG_EVT,
+    356          //                      SimonApp_SEND_MSG_TIMEOUT );
+    357          
+    358              // return unprocessed events
+    359          //    P0_1 = 0;//µãÁÁLED2
+    360          //    keyChange_t *msgPtr;
+    361          //    msgPtr = (keyChange_t *)osal_msg_allocate( sizeof(keyChange_t) );
+    362          //    if ( msgPtr )
+    363          //    {
+    364          //      msgPtr->hdr.event = KEY_CHANGE;
+    365          //       msgPtr->keys=3;
+    366          //    
+    367          //      osal_msg_send( SimonApp_TaskID, (uint8 *)msgPtr );
+    368          //    }
+    369              return (events ^ SimonApp_SEND_MSG_EVT);
+   \   0000A8   E5..         MOV     A,?V0 + 0
+   \   0000AA   6401         XRL     A,#0x1
+   \   0000AC   FA           MOV     R2,A
+   \   0000AD   AB..         MOV     R3,?V0 + 1
+   \   0000AF   8004         SJMP    ??SimonApp_ProcessEvent_10
+    370            }
+    371          
+    372            // Discard unknown events
+    373            return 0;
+   \                     ??SimonApp_ProcessEvent_11:
+   \   0000B1   7A00         MOV     R2,#0x0
+   \   0000B3   7B00         MOV     R3,#0x0
+   \                     ??SimonApp_ProcessEvent_10:
+   \   0000B5   7F04         MOV     R7,#0x4
+   \   0000B7   02....       LJMP    ?BANKED_LEAVE_XDATA
+    374          }
+    375          
+    376          /*********************************************************************
+    377           * Event Generation Functions
+    378           */
+    379          
+    380          /*********************************************************************
+    381           * @fn      SimonApp_ProcessZDOMsgs()
+    382           *
+    383           * @brief   Process response messages
+    384           *
+    385           * @param   none
+    386           *
+    387           * @return  none
+    388           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    389          void SimonApp_ProcessZDOMsgs( zdoIncomingMsg_t *inMsg )
+   \                     SimonApp_ProcessZDOMsgs:
+    390          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+    391            switch ( inMsg->clusterID )
+   \   000005   EA           MOV     A,R2
+   \   000006   240C         ADD     A,#0xc
+   \   000008   F582         MOV     DPL,A
+   \   00000A   EB           MOV     A,R3
+   \   00000B   3400         ADDC    A,#0x0
+   \   00000D   F583         MOV     DPH,A
+   \   00000F   E0           MOVX    A,@DPTR
+   \   000010   F5..         MOV     ?V0 + 0,A
+   \   000012   A3           INC     DPTR
+   \   000013   E0           MOVX    A,@DPTR
+   \   000014   F5..         MOV     ?V0 + 1,A
+   \   000016   78..         MOV     R0,#?V0 + 0
+   \   000018   12....       LCALL   ?US_SWITCH_SPARSE
+   \                     `?<Jumptable for SimonApp_ProcessZDOMsgs>_0`:
+   \   00001B   0000         DW        0
+   \   00001D   0200         DW        2
+   \   00001F   0680         DW        32774
+   \   000021   ....         DW        ??SimonApp_ProcessZDOMsgs_0
+   \   000023   2080         DW        32800
+   \   000025   ....         DW        ??SimonApp_ProcessZDOMsgs_1
+   \   000027   ....         DW        ??SimonApp_ProcessZDOMsgs_2
+    392            {
+    393              case End_Device_Bind_rsp:
+    394                if ( ZDO_ParseBindRsp( inMsg ) == ZSuccess )
+   \                     ??SimonApp_ProcessZDOMsgs_1:
+   \   000029   EA           MOV     A,R2
+   \   00002A   2413         ADD     A,#0x13
+   \   00002C   F582         MOV     DPL,A
+   \   00002E   EB           MOV     A,R3
+   \   00002F   3400         ADDC    A,#0x0
+   \   000031   F583         MOV     DPH,A
+   \   000033   E0           MOVX    A,@DPTR
+   \   000034   F8           MOV     R0,A
+   \   000035   A3           INC     DPTR
+   \   000036   E0           MOVX    A,@DPTR
+   \   000037   F583         MOV     DPH,A
+   \   000039   8882         MOV     DPL,R0
+   \   00003B   E0           MOVX    A,@DPTR
+   \   00003C   7009         JNZ     ??SimonApp_ProcessZDOMsgs_3
+    395                {
+    396                  // Light LED
+    397                  HalLedSet( HAL_LED_4, HAL_LED_MODE_ON );
+   \   00003E                ; Setup parameters for call to function HalLedSet
+   \   00003E   7A01         MOV     R2,#0x1
+   \                     ??SimonApp_ProcessZDOMsgs_4:
+   \   000040   7908         MOV     R1,#0x8
+   \   000042   12....       LCALL   ??HalLedSet?relay
+   \   000045   8053         SJMP    ??SimonApp_ProcessZDOMsgs_2
+    398                }
+    399          #if defined(BLINK_LEDS)
+    400                else
+    401                {
+    402                  // Flash LED to show failure
+    403                  HalLedSet ( HAL_LED_4, HAL_LED_MODE_FLASH );
+   \                     ??SimonApp_ProcessZDOMsgs_3:
+   \   000047                ; Setup parameters for call to function HalLedSet
+   \   000047   7A04         MOV     R2,#0x4
+   \   000049   80F5         SJMP    ??SimonApp_ProcessZDOMsgs_4
+    404                }
+    405          #endif
+    406                break;
+    407          
+    408              case Match_Desc_rsp:
+    409                {
+    410                  ZDO_ActiveEndpointRsp_t *pRsp = ZDO_ParseEPListRsp( inMsg );
+   \                     ??SimonApp_ProcessZDOMsgs_0:
+   \   00004B                ; Setup parameters for call to function ZDO_ParseEPListRsp
+   \   00004B   12....       LCALL   ??ZDO_ParseEPListRsp?relay
+   \   00004E   8A..         MOV     ?V0 + 0,R2
+   \   000050   8B..         MOV     ?V0 + 1,R3
+   \   000052   AE..         MOV     R6,?V0 + 0
+   \   000054   AF..         MOV     R7,?V0 + 1
+    411                  if ( pRsp )
+   \   000056   EE           MOV     A,R6
+   \   000057   4F           ORL     A,R7
+   \   000058   6040         JZ      ??SimonApp_ProcessZDOMsgs_2
+    412                  {
+    413                    if ( pRsp->status == ZSuccess && pRsp->cnt )
+   \   00005A   8E82         MOV     DPL,R6
+   \   00005C   8F83         MOV     DPH,R7
+   \   00005E   E0           MOVX    A,@DPTR
+   \   00005F   7032         JNZ     ??SimonApp_ProcessZDOMsgs_5
+   \   000061   A3           INC     DPTR
+   \   000062   A3           INC     DPTR
+   \   000063   A3           INC     DPTR
+   \   000064   E0           MOVX    A,@DPTR
+   \   000065   602C         JZ      ??SimonApp_ProcessZDOMsgs_5
+    414                    {
+    415                      SimonApp_DstAddr.addrMode = (afAddrMode_t)Addr16Bit;
+   \   000067   90....       MOV     DPTR,#SimonApp_DstAddr + 8
+   \   00006A   7402         MOV     A,#0x2
+   \   00006C   F0           MOVX    @DPTR,A
+    416                      SimonApp_DstAddr.addr.shortAddr = pRsp->nwkAddr;
+   \   00006D   8E82         MOV     DPL,R6
+   \   00006F   8F83         MOV     DPH,R7
+   \   000071   A3           INC     DPTR
+   \   000072   E0           MOVX    A,@DPTR
+   \   000073   F8           MOV     R0,A
+   \   000074   A3           INC     DPTR
+   \   000075   E0           MOVX    A,@DPTR
+   \   000076   F9           MOV     R1,A
+   \   000077   90....       MOV     DPTR,#SimonApp_DstAddr
+   \   00007A   E8           MOV     A,R0
+   \   00007B   F0           MOVX    @DPTR,A
+   \   00007C   A3           INC     DPTR
+   \   00007D   E9           MOV     A,R1
+   \   00007E   F0           MOVX    @DPTR,A
+    417                      // Take the first endpoint, Can be changed to search through endpoints
+    418                      SimonApp_DstAddr.endPoint = pRsp->epList[0];
+   \   00007F   8E82         MOV     DPL,R6
+   \   000081   8F83         MOV     DPH,R7
+   \   000083   A3           INC     DPTR
+   \   000084   A3           INC     DPTR
+   \   000085   A3           INC     DPTR
+   \   000086   A3           INC     DPTR
+   \   000087   E0           MOVX    A,@DPTR
+   \   000088   90....       MOV     DPTR,#SimonApp_DstAddr + 9
+   \   00008B   F0           MOVX    @DPTR,A
+    419          
+    420                      // Light LED
+    421                      HalLedSet( HAL_LED_4, HAL_LED_MODE_ON );
+   \   00008C                ; Setup parameters for call to function HalLedSet
+   \   00008C   7A01         MOV     R2,#0x1
+   \   00008E   7908         MOV     R1,#0x8
+   \   000090   12....       LCALL   ??HalLedSet?relay
+    422                    }
+    423                    osal_mem_free( pRsp );
+   \                     ??SimonApp_ProcessZDOMsgs_5:
+   \   000093                ; Setup parameters for call to function osal_mem_free
+   \   000093   EE           MOV     A,R6
+   \   000094   FA           MOV     R2,A
+   \   000095   EF           MOV     A,R7
+   \   000096   FB           MOV     R3,A
+   \   000097   12....       LCALL   ??osal_mem_free?relay
+    424                  }
+    425                }
+    426                break;
+    427            }
+    428          }
+   \                     ??SimonApp_ProcessZDOMsgs_2:
+   \   00009A                REQUIRE ?Subroutine1
+   \   00009A                ; // Fall through to label ?Subroutine1
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   7F02         MOV     R7,#0x2
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+    429          
+    430          /*********************************************************************
+    431           * @fn      SimonApp_HandleKeys
+    432           *
+    433           * @brief   Handles all key events for this device.
+    434           *
+    435           * @param   shift - true if in shift/alt.
+    436           * @param   keys - bit field for key events. Valid entries:
+    437           *                 HAL_KEY_SW_4
+    438           *                 HAL_KEY_SW_3
+    439           *                 HAL_KEY_SW_2
+    440           *                 HAL_KEY_SW_1
+    441           *
+    442           * @return  none
+    443           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    444          void SimonApp_HandleKeys( byte shift, byte keys )
+   \                     SimonApp_HandleKeys:
+    445          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+    446            zAddrType_t dstAddr;
+                               ^
+Warning[Pe177]: variable "dstAddr" was declared but never referenced
+    447            
+    448            LS164_BYTE(keys);
+   \   000006                ; Setup parameters for call to function LS164_BYTE
+   \   000006   F9           MOV     R1,A
+   \   000007   12....       LCALL   ??LS164_BYTE?relay
+    449            
+    450            // Shift is used to make each button/switch dual purpose.
+    451            if ( shift )
+    452            {
+    453              if ( keys & HAL_KEY_SW_1 )
+    454              {
+    455              }
+    456              if ( keys & HAL_KEY_SW_2 )
+    457              {
+    458              }
+    459              if ( keys & HAL_KEY_SW_3 )
+    460              {
+    461              }
+    462              if ( keys & HAL_KEY_SW_4 )
+    463              {
+    464              }
+    465            }
+    466            else
+    467            {
+    468              if ( keys & HAL_KEY_SW_1 )
+    469              {
+    470              }
+    471          
+    472              if ( keys & HAL_KEY_SW_2 )
+    473              {
+    474          //      HalLedSet ( HAL_LED_4, HAL_LED_MODE_OFF );
+    475          //
+    476          //      // Initiate an End Device Bind Request for the mandatory endpoint
+    477          //      dstAddr.addrMode = Addr16Bit;
+    478          //      dstAddr.addr.shortAddr = 0x0000; // Coordinator
+    479          //      ZDP_EndDeviceBindReq( &dstAddr, NLME_GetShortAddr(), 
+    480          //                            SimonApp_epDesc.endPoint,
+    481          //                            SimonApp_PROFID,
+    482          //                            SimonApp_MAX_CLUSTERS, (cId_t *)SimonApp_ClusterList,
+    483          //                            SimonApp_MAX_CLUSTERS, (cId_t *)SimonApp_ClusterList,
+    484          //                            FALSE );
+    485              }
+    486          
+    487              if ( keys & HAL_KEY_SW_3 )
+    488              {
+    489              }
+    490          
+    491              if ( keys & HAL_KEY_SW_4 )
+    492              {
+    493          //      HalLedSet ( HAL_LED_4, HAL_LED_MODE_OFF );
+    494          //      // Initiate a Match Description Request (Service Discovery)
+    495          //      dstAddr.addrMode = AddrBroadcast;
+    496          //      dstAddr.addr.shortAddr = NWK_BROADCAST_SHORTADDR;
+    497          //      ZDP_MatchDescReq( &dstAddr, NWK_BROADCAST_SHORTADDR,
+    498          //                        SimonApp_PROFID,
+    499          //                        SimonApp_MAX_CLUSTERS, (cId_t *)SimonApp_ClusterList,
+    500          //                        SimonApp_MAX_CLUSTERS, (cId_t *)SimonApp_ClusterList,
+    501          //                        FALSE );
+    502              }
+    503            }
+    504          }
+   \   00000A   02....       LJMP    ?Subroutine0 & 0xFFFF
+    505          
+    506          /*********************************************************************
+    507           * LOCAL FUNCTIONS
+    508           */
+    509          
+    510          /*********************************************************************
+    511           * @fn      SimonApp_MessageMSGCB
+    512           *
+    513           * @brief   Data message processor callback.  This function processes
+    514           *          any incoming data - probably from other devices.  So, based
+    515           *          on cluster ID, perform the intended action.
+    516           *
+    517           * @param   none
+    518           *
+    519           * @return  none
+    520           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    521          void SimonApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )
+   \                     SimonApp_MessageMSGCB:
+    522          {
+   \   000000   74F5         MOV     A,#-0xb
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 11
+   \   000005                ; Auto size: 0
+    523            switch ( pkt->clusterId )
+   \   000005   8A82         MOV     DPL,R2
+   \   000007   8B83         MOV     DPH,R3
+   \   000009   A3           INC     DPTR
+   \   00000A   A3           INC     DPTR
+   \   00000B   A3           INC     DPTR
+   \   00000C   A3           INC     DPTR
+   \   00000D   E0           MOVX    A,@DPTR
+   \   00000E   6401         XRL     A,#0x1
+   \   000010   7002         JNZ     ??SimonApp_MessageMSGCB_0
+   \   000012   A3           INC     DPTR
+   \   000013   E0           MOVX    A,@DPTR
+   \                     ??SimonApp_MessageMSGCB_0:
+   \   000014   704C         JNZ     ??SimonApp_MessageMSGCB_1
+    524            {
+    525              case SimonApp_CLUSTERID:
+    526                // "the" message
+    527          #if defined( LCD_SUPPORTED )
+    528                HalLcdWriteScreen( (char*)pkt->cmd.Data, "rcvd" );
+   \   000016   EA           MOV     A,R2
+   \   000017   2421         ADD     A,#0x21
+   \   000019   F8           MOV     R0,A
+   \   00001A   EB           MOV     A,R3
+   \   00001B   3400         ADDC    A,#0x0
+   \   00001D   F9           MOV     R1,A
+   \   00001E   E8           MOV     A,R0
+   \   00001F   FE           MOV     R6,A
+   \   000020   E9           MOV     A,R1
+   \   000021   FF           MOV     R7,A
+   \   000022                ; Setup parameters for call to function HalLcdWriteScreen
+   \   000022   7C..         MOV     R4,#`?<Constant "rcvd">` & 0xff
+   \   000024   7D..         MOV     R5,#(`?<Constant "rcvd">` >> 8) & 0xff
+   \   000026   8E82         MOV     DPL,R6
+   \   000028   8F83         MOV     DPH,R7
+   \   00002A   E0           MOVX    A,@DPTR
+   \   00002B   FA           MOV     R2,A
+   \   00002C   A3           INC     DPTR
+   \   00002D   E0           MOVX    A,@DPTR
+   \   00002E   FB           MOV     R3,A
+   \   00002F   12....       LCALL   ??HalLcdWriteScreen?relay
+    529          #elif defined( WIN32 )
+    530                WPRINTSTR( pkt->cmd.Data );
+    531          #endif
+    532                osal_memcpy(uartbuf,(unsigned char*)pkt->cmd.Data,UART_MAX);
+   \   000032                ; Setup parameters for call to function osal_memcpy
+   \   000032   8E82         MOV     DPL,R6
+   \   000034   8F83         MOV     DPH,R7
+   \   000036   E0           MOVX    A,@DPTR
+   \   000037   F5..         MOV     ?V0 + 0,A
+   \   000039   A3           INC     DPTR
+   \   00003A   E0           MOVX    A,@DPTR
+   \   00003B   F5..         MOV     ?V0 + 1,A
+   \   00003D   75..00       MOV     ?V0 + 2,#0x0
+   \   000040   78..         MOV     R0,#?V0 + 0
+   \   000042   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000045   7C80         MOV     R4,#-0x80
+   \   000047   7D00         MOV     R5,#0x0
+   \   000049   7A..         MOV     R2,#uartbuf & 0xff
+   \   00004B   7B..         MOV     R3,#(uartbuf >> 8) & 0xff
+   \   00004D   12....       LCALL   ??osal_memcpy?relay
+   \   000050   7403         MOV     A,#0x3
+   \   000052   12....       LCALL   ?DEALLOC_XSTACK8
+    533                HalUARTWrite(0,uartbuf,UART_MAX);
+   \   000055                ; Setup parameters for call to function HalUARTWrite
+   \   000055   7C80         MOV     R4,#-0x80
+   \   000057   7D00         MOV     R5,#0x0
+   \   000059   7A..         MOV     R2,#uartbuf & 0xff
+   \   00005B   7B..         MOV     R3,#(uartbuf >> 8) & 0xff
+   \   00005D   7900         MOV     R1,#0x0
+   \   00005F   12....       LCALL   ??HalUARTWrite?relay
+    534                break;
+    535            }
+    536          }
+   \                     ??SimonApp_MessageMSGCB_1:
+   \   000062   7F03         MOV     R7,#0x3
+   \   000064   02....       LJMP    ?BANKED_LEAVE_XDATA
+    537          
+    538          /*********************************************************************
+    539           * @fn      SimonApp_SendTheMessage
+    540           *
+    541           * @brief   Send "the" message.
+    542           *
+    543           * @param   none
+    544           *
+    545           * @return  none
+    546           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    547          void SimonApp_SendTheMessage( void )
+   \                     SimonApp_SendTheMessage:
+    548          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+    549            //char theMessageData[] = "Hello World";
+    550          
+    551            if ( AF_DataRequest( &SimonApp_DstAddr, &SimonApp_epDesc,
+    552                                 SimonApp_CLUSTERID,
+    553                                 (byte)osal_strlen( uartbuf ) + 1,
+                                                           ^
+Warning[Pe167]: argument of type "unsigned char *" is incompatible with
+          parameter of type "char *"
+    554                                 (byte *)&uartbuf,
+    555                                 &SimonApp_TransID,
+    556                                 AF_DISCV_ROUTE, AF_DEFAULT_RADIUS ) == afStatus_SUCCESS )
+   \   000005                ; Setup parameters for call to function AF_DataRequest
+   \   000005   75..1E       MOV     ?V0 + 0,#0x1e
+   \   000008   78..         MOV     R0,#?V0 + 0
+   \   00000A   12....       LCALL   ?PUSH_XSTACK_I_ONE
+   \   00000D   75....       MOV     ?V0 + 0,#SimonApp_TransID & 0xff
+   \   000010   75....       MOV     ?V0 + 1,#(SimonApp_TransID >> 8) & 0xff
+   \   000013   78..         MOV     R0,#?V0 + 0
+   \   000015   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000018   75....       MOV     ?V0 + 0,#uartbuf & 0xff
+   \   00001B   75....       MOV     ?V0 + 1,#(uartbuf >> 8) & 0xff
+   \   00001E   78..         MOV     R0,#?V0 + 0
+   \   000020   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000023                ; Setup parameters for call to function osal_strlen
+   \   000023   7A..         MOV     R2,#uartbuf & 0xff
+   \   000025   7B..         MOV     R3,#(uartbuf >> 8) & 0xff
+   \   000027   12....       LCALL   ??osal_strlen?relay
+   \   00002A   EA           MOV     A,R2
+   \   00002B   2401         ADD     A,#0x1
+   \   00002D   F5..         MOV     ?V0 + 0,A
+   \   00002F   E4           CLR     A
+   \   000030   3400         ADDC    A,#0x0
+   \   000032   F5..         MOV     ?V0 + 1,A
+   \   000034   78..         MOV     R0,#?V0 + 0
+   \   000036   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000039   75..01       MOV     ?V0 + 0,#0x1
+   \   00003C   75..00       MOV     ?V0 + 1,#0x0
+   \   00003F   78..         MOV     R0,#?V0 + 0
+   \   000041   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000044   7920         MOV     R1,#0x20
+   \   000046   7C..         MOV     R4,#SimonApp_epDesc & 0xff
+   \   000048   7D..         MOV     R5,#(SimonApp_epDesc >> 8) & 0xff
+   \   00004A   7A..         MOV     R2,#SimonApp_DstAddr & 0xff
+   \   00004C   7B..         MOV     R3,#(SimonApp_DstAddr >> 8) & 0xff
+   \   00004E   12....       LCALL   ??AF_DataRequest?relay
+   \   000051   7409         MOV     A,#0x9
+   \   000053   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000056   E9           MOV     A,R1
+   \   000057   700D         JNZ     ??SimonApp_SendTheMessage_0
+    557            {
+    558              // Successfully requested to be sent.
+    559              HalUARTWrite(0,"OK\n",3);
+   \   000059                ; Setup parameters for call to function HalUARTWrite
+   \   000059   7C03         MOV     R4,#0x3
+   \   00005B   7D00         MOV     R5,#0x0
+   \   00005D   7A..         MOV     R2,#`?<Constant "OK\\n">` & 0xff
+   \   00005F   7B..         MOV     R3,#(`?<Constant "OK\\n">` >> 8) & 0xff
+   \   000061   7900         MOV     R1,#0x0
+   \   000063   12....       LCALL   ??HalUARTWrite?relay
+    560            }
+    561            else
+    562            {
+    563              // Error occurred in request to send.
+    564            }
+    565          }
+   \                     ??SimonApp_SendTheMessage_0:
+   \   000066   02....       LJMP    ?Subroutine1 & 0xFFFF
+    566          
+    567          /*********************************************************************
+    568          *********************************************************************/
+    569          
+    570          
+    571          /*added by Simon*/
+    572          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    573          static void rxCB(uint8 port,uint8 event)
+   \                     rxCB:
+    574          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    575              HalUARTRead(0,uartbuf,UART_MAX);
+   \   000004                ; Setup parameters for call to function HalUARTRead
+   \   000004   7C80         MOV     R4,#-0x80
+   \   000006   7D00         MOV     R5,#0x0
+   \   000008   7A..         MOV     R2,#uartbuf & 0xff
+   \   00000A   7B..         MOV     R3,#(uartbuf >> 8) & 0xff
+   \   00000C   7900         MOV     R1,#0x0
+   \   00000E   12....       LCALL   ??HalUARTRead?relay
+    576          //    if(osal_memcmp(uartbuf,"lzj",3))
+    577          //    {
+    578          //      HalUARTWrite(0,uartbuf,3);
+    579          //    }
+    580              if(DEV_FLAG == 3)
+   \   000011   90....       MOV     DPTR,#DEV_FLAG
+   \   000014   E0           MOVX    A,@DPTR
+   \   000015   6403         XRL     A,#0x3
+   \   000017   700C         JNZ     ??rxCB_0
+    581                osal_set_event(SimonApp_TaskID,SimonApp_SEND_MSG_EVT);
+   \   000019                ; Setup parameters for call to function osal_set_event
+   \   000019   7A01         MOV     R2,#0x1
+   \   00001B   7B00         MOV     R3,#0x0
+   \   00001D   90....       MOV     DPTR,#SimonApp_TaskID
+   \   000020   E0           MOVX    A,@DPTR
+   \   000021   F9           MOV     R1,A
+   \   000022   12....       LCALL   ??osal_set_event?relay
+    582          }
+   \                     ??rxCB_0:
+   \   000025   D083         POP     DPH
+   \   000027   D082         POP     DPL
+   \   000029   02....       LJMP    ?BRET
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SimonApp_Init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SimonApp_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SimonApp_ProcessEvent?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SimonApp_ProcessEvent
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SimonApp_ProcessZDOMsgs?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SimonApp_ProcessZDOMsgs
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SimonApp_HandleKeys?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SimonApp_HandleKeys
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SimonApp_MessageMSGCB?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SimonApp_MessageMSGCB
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SimonApp_SendTheMessage?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SimonApp_SendTheMessage
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??rxCB?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    rxCB
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "SimonApp">`:
+   \   000000   53696D6F     DB "SimonApp"
+   \            6E417070
+   \            00      
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "rcvd">`:
+   \   000000   72637664     DB "rcvd"
+   \            00      
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "OK\\n">`:
+   \   000000   4F4B0A00     DB "OK\012"
+    583          
+    584          /******************************************/
+
+   Maximum stack usage in bytes:
+
+     Function                     ISTACK PSTACK XSTACK
+     --------                     ------ ------ ------
+     SimonApp_HandleKeys              0      0      9
+       -> LS164_BYTE                  0      0     18
+     SimonApp_Init                    0      0     38
+       -> afRegister                  0      0     76
+       -> HalUARTOpen                 0      0     76
+       -> RegisterForKeys             0      0     76
+       -> HalLcdWriteString           0      0     76
+       -> ZDO_RegisterForZDOMsg       0      0     76
+       -> ZDO_RegisterForZDOMsg       0      0     76
+     SimonApp_MessageMSGCB            0      0     26
+       -> HalLcdWriteScreen           0      0     22
+       -> osal_memcpy                 0      0     28
+       -> HalUARTWrite                0      0     22
+     SimonApp_ProcessEvent            0      0     12
+       -> osal_msg_receive            0      0     24
+       -> LS164_BYTE                  0      0     24
+       -> LS164_BYTE                  0      0     24
+       -> LS164_BYTE                  0      0     24
+       -> osal_msg_deallocate         0      0     24
+       -> osal_msg_receive            0      0     24
+       -> SimonApp_ProcessZDOMsgs     0      0     24
+       -> LS164_BYTE                  0      0     24
+       -> SimonApp_MessageMSGCB       0      0     24
+       -> SimonApp_SendTheMessage     0      0     24
+     SimonApp_ProcessZDOMsgs          0      0     22
+       -> HalLedSet                   0      0     20
+       -> HalLedSet                   0      0     20
+       -> ZDO_ParseEPListRsp          0      0     20
+       -> HalLedSet                   0      0     20
+       -> osal_mem_free               0      0     20
+     SimonApp_SendTheMessage          0      0     31
+       -> osal_strlen                 0      0     30
+       -> AF_DataRequest              0      0     38
+       -> HalUARTWrite                0      0     20
+     rxCB                             2      0      0
+       -> HalUARTRead                 4      0      0
+       -> osal_set_event              4      0      0
+
+
+   Segment part sizes:
+
+     Function/Label                  Bytes
+     --------------                  -----
+     SimonApp_ClusterList               2
+     SimonApp_SimpleDesc               12
+     SimonApp_epDesc                    6
+     SimonApp_TaskID                    1
+     SimonApp_NwkState                  1
+     SimonApp_TransID                   1
+     SimonApp_DstAddr                  12
+     uartbuf                          128
+     DEV_FLAG                           1
+     SimonApp_Init                    165
+     ?Subroutine0                       5
+     SimonApp_ProcessEvent            186
+     SimonApp_ProcessZDOMsgs          154
+     ?Subroutine1                       5
+     SimonApp_HandleKeys               13
+     SimonApp_MessageMSGCB            103
+     SimonApp_SendTheMessage          105
+     rxCB                              44
+     ??SimonApp_Init?relay              6
+     ??SimonApp_ProcessEvent?relay      6
+     ??SimonApp_ProcessZDOMsgs?relay    6
+     ??SimonApp_HandleKeys?relay        6
+     ??SimonApp_MessageMSGCB?relay      6
+     ??SimonApp_SendTheMessage?relay    6
+     ??rxCB?relay                       6
+     ?<Constant "SimonApp">             9
+     ?<Constant "rcvd">                 5
+     ?<Constant "OK\n">                 4
+
+ 
+ 780 bytes in segment BANKED_CODE
+  42 bytes in segment BANK_RELAYS
+  32 bytes in segment XDATA_ROM_C
+ 150 bytes in segment XDATA_Z
+ 
+ 822 bytes of CODE  memory
+  32 bytes of CONST memory
+ 150 bytes of XDATA memory
+
+Errors: none
+Warnings: 2

@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         22/Nov/2016  20:48:28 #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         23/Nov/2016  16:17:58 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -42,12 +42,12 @@
 #                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Compone #
 #                          nts\stack\nwk\nwk_globals.c -D ZIGBEEPRO -D        #
 #                          ZTOOL_P1 -D MT_TASK -D MT_SYS_FUNC -D MT_ZDO_FUNC  #
-#                          -D LCD_SUPPORTED=DEBUG -lC                         #
-#                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
-#                          s\zstack\Samples\SimonApp\CC2530DB\RouterEB-Pro\Li #
-#                          st\ -lA F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0 #
-#                          \Projects\zstack\Samples\SimonApp\CC2530DB\RouterE #
-#                          B-Pro\List\ --diag_suppress Pe001,Pa010 -o         #
+#                          -D LCD_SUPPORTED=DEBUG -D NV_RESTORE -D NV_INIT    #
+#                          -lC F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Pro #
+#                          jects\zstack\Samples\SimonApp\CC2530DB\RouterEB-Pr #
+#                          o\List\ -lA F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1 #
+#                          .4.0\Projects\zstack\Samples\SimonApp\CC2530DB\Rou #
+#                          terEB-Pro\List\ --diag_suppress Pe001,Pa010 -o     #
 #                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Project #
 #                          s\zstack\Samples\SimonApp\CC2530DB\RouterEB-Pro\Ob #
 #                          j\ -e --debug --core=plain --dptr=16,1             #

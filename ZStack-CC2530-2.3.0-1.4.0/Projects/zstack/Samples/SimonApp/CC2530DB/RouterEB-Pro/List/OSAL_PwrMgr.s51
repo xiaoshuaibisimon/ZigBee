@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                            /
-// IAR C/C++ Compiler V8.10.3.10338/W32 for 8051        22/Nov/2016  20:48:19 /
+// IAR C/C++ Compiler V8.10.3.10338/W32 for 8051        23/Nov/2016  16:17:49 /
 // Copyright 2004-2011 IAR Systems AB.                                        /
 //                                                                            /
 //    Core               =  plain                                             /
@@ -43,7 +43,7 @@
 //                          2530-2.3.0-1.4.0\Components\osal\common\OSAL_PwrM /
 //                          gr.c -D ZIGBEEPRO -D ZTOOL_P1 -D MT_TASK -D       /
 //                          MT_SYS_FUNC -D MT_ZDO_FUNC -D                     /
-//                          LCD_SUPPORTED=DEBUG -lC                           /
+//                          LCD_SUPPORTED=DEBUG -D NV_RESTORE -D NV_INIT -lC  /
 //                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projec /
 //                          ts\zstack\Samples\SimonApp\CC2530DB\RouterEB-Pro\ /
 //                          List\ -lA F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1. /

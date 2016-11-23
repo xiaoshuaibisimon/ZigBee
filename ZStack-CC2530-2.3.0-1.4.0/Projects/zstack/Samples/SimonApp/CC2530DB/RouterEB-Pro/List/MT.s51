@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                            /
-// IAR C/C++ Compiler V8.10.3.10338/W32 for 8051        22/Nov/2016  20:48:16 /
+// IAR C/C++ Compiler V8.10.3.10338/W32 for 8051        23/Nov/2016  16:17:47 /
 // Copyright 2004-2011 IAR Systems AB.                                        /
 //                                                                            /
 //    Core               =  plain                                             /
@@ -42,12 +42,13 @@
 //                          -DREJOIN_POLL_RATE=440 F:\GitHub\ZigBee\ZStack-CC /
 //                          2530-2.3.0-1.4.0\Components\mt\MT.c -D ZIGBEEPRO  /
 //                          -D ZTOOL_P1 -D MT_TASK -D MT_SYS_FUNC -D          /
-//                          MT_ZDO_FUNC -D LCD_SUPPORTED=DEBUG -lC            /
+//                          MT_ZDO_FUNC -D LCD_SUPPORTED=DEBUG -D NV_RESTORE  /
+//                          -D NV_INIT -lC F:\GitHub\ZigBee\ZStack-CC2530-2.3 /
+//                          .0-1.4.0\Projects\zstack\Samples\SimonApp\CC2530D /
+//                          B\RouterEB-Pro\List\ -lA                          /
 //                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projec /
 //                          ts\zstack\Samples\SimonApp\CC2530DB\RouterEB-Pro\ /
-//                          List\ -lA F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1. /
-//                          4.0\Projects\zstack\Samples\SimonApp\CC2530DB\Rou /
-//                          terEB-Pro\List\ --diag_suppress Pe001,Pa010 -o    /
+//                          List\ --diag_suppress Pe001,Pa010 -o              /
 //                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projec /
 //                          ts\zstack\Samples\SimonApp\CC2530DB\RouterEB-Pro\ /
 //                          Obj\ -e --debug --core=plain --dptr=16,1          /

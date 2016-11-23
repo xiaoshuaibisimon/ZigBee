@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         22/Nov/2016  20:48:45 #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         23/Nov/2016  16:38:38 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -20,7 +20,7 @@
 #                          CC2530DB\f8wConfig.cfg (-DSECURE=0                 #
 #                          -DZG_SECURE_DYNAMIC=0 -DREFLECTOR                  #
 #                          -DDEFAULT_CHANLIST=0x00000800                      #
-#                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                       #
+#                          -DZDAPP_CONFIG_PAN_ID=0x8888                       #
 #                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
 #                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
 #                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
@@ -407,89 +407,92 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
     171            LS164_Cfg();
    \   000073                ; Setup parameters for call to function LS164_Cfg
    \   000073   12....       LCALL   ??LS164_Cfg?relay
-    172            osal_start_system(); // No Return from here
-   \   000076                ; Setup parameters for call to function osal_start_system
-   \   000076   12....       LCALL   ??osal_start_system?relay
-    173          
-    174            return 0;  // Shouldn't get here.
-   \   000079   7A00         MOV     R2,#0x0
-   \   00007B   7B00         MOV     R3,#0x0
-   \   00007D   02....       LJMP    ?BRET
-   \   000080                REQUIRE SLEEPCMD
-   \   000080                REQUIRE SLEEPSTA
-   \   000080                REQUIRE CLKCONCMD
-   \   000080                REQUIRE CLKCONSTA
-   \   000080                REQUIRE P1DIR
-   \   000080                REQUIRE P0INP
-    175          } // main()
-    176          
-    177          /*********************************************************************
-    178           * @fn      zmain_vdd_check
-    179           * @brief   Check if the Vdd is OK to run the processor.
-    180           * @return  Return if Vdd is ok; otherwise, flash LED, then reset
-    181           *********************************************************************/
+    172            Led_Init();
+   \   000076                ; Setup parameters for call to function Led_Init
+   \   000076   12....       LCALL   ??Led_Init?relay
+    173            osal_start_system(); // No Return from here
+   \   000079                ; Setup parameters for call to function osal_start_system
+   \   000079   12....       LCALL   ??osal_start_system?relay
+    174          
+    175            return 0;  // Shouldn't get here.
+   \   00007C   7A00         MOV     R2,#0x0
+   \   00007E   7B00         MOV     R3,#0x0
+   \   000080   02....       LJMP    ?BRET
+   \   000083                REQUIRE SLEEPCMD
+   \   000083                REQUIRE SLEEPSTA
+   \   000083                REQUIRE CLKCONCMD
+   \   000083                REQUIRE CLKCONSTA
+   \   000083                REQUIRE P1DIR
+   \   000083                REQUIRE P0INP
+    176          } // main()
+    177          
+    178          /*********************************************************************
+    179           * @fn      zmain_vdd_check
+    180           * @brief   Check if the Vdd is OK to run the processor.
+    181           * @return  Return if Vdd is ok; otherwise, flash LED, then reset
+    182           *********************************************************************/
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    182          static void zmain_vdd_check( void )
+    183          static void zmain_vdd_check( void )
    \                     zmain_vdd_check:
-    183          {
+    184          {
    \   000000   74F7         MOV     A,#-0x9
    \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
    \   000005                ; Saved register size: 9
    \   000005                ; Auto size: 0
-    184            uint8 vdd_passed_count = 0;
+    185            uint8 vdd_passed_count = 0;
    \   000005   7E00         MOV     R6,#0x0
-    185            bool toggle = 0;
+    186            bool toggle = 0;
    \   000007   7F00         MOV     R7,#0x0
-    186          
-    187            // Repeat getting the sample until number of failures or successes hits MAX
-    188            // then based on the count value, determine if the device is ready or not
-    189            while ( vdd_passed_count < MAX_VDD_SAMPLES )
-    190            {
-    191              if ( HalAdcCheckVdd (ZMAIN_VDD_LIMIT) )
+    187          
+    188            // Repeat getting the sample until number of failures or successes hits MAX
+    189            // then based on the count value, determine if the device is ready or not
+    190            while ( vdd_passed_count < MAX_VDD_SAMPLES )
+    191            {
+    192              if ( HalAdcCheckVdd (ZMAIN_VDD_LIMIT) )
    \                     ??zmain_vdd_check_0:
    \   000009                ; Setup parameters for call to function HalAdcCheckVdd
    \   000009   7904         MOV     R1,#0x4
    \   00000B   12....       LCALL   ??HalAdcCheckVdd?relay
    \   00000E   E9           MOV     A,R1
    \   00000F   6019         JZ      ??zmain_vdd_check_1
-    192              {
-    193                vdd_passed_count++;    // Keep track # times Vdd passes in a row
+    193              {
+    194                vdd_passed_count++;    // Keep track # times Vdd passes in a row
    \   000011   0E           INC     R6
-    194                MicroWait (10000);     // Wait 10ms to try again
+    195                MicroWait (10000);     // Wait 10ms to try again
    \   000012                ; Setup parameters for call to function Onboard_wait
    \   000012   7A10         MOV     R2,#0x10
    \   000014   7B27         MOV     R3,#0x27
    \   000016   12....       LCALL   ??Onboard_wait?relay
-    195              }
-    196              else
-    197              {
-    198                vdd_passed_count = 0;  // Reset passed counter
-    199                MicroWait (50000);     // Wait 50ms
-    200                MicroWait (50000);     // Wait another 50ms to try again
-    201              }
-    202          
-    203              /* toggle LED1 and LED2 */
-    204              if (vdd_passed_count == 0)
+    196              }
+    197              else
+    198              {
+    199                vdd_passed_count = 0;  // Reset passed counter
+    200                MicroWait (50000);     // Wait 50ms
+    201                MicroWait (50000);     // Wait another 50ms to try again
+    202              }
+    203          
+    204              /* toggle LED1 and LED2 */
+    205              if (vdd_passed_count == 0)
    \   000019   EE           MOV     A,R6
    \   00001A   601E         JZ      ??zmain_vdd_check_2
    \   00001C   C3           CLR     C
    \   00001D   9403         SUBB    A,#0x3
    \   00001F   40E8         JC      ??zmain_vdd_check_0
-    205              {
-    206                if ((toggle = !(toggle)))
-    207                  HAL_TOGGLE_LED1();
-    208                else
-    209                  HAL_TOGGLE_LED2();
-    210              }
-    211            }
-    212          
-    213            /* turn off LED1 */
-    214            HAL_TURN_OFF_LED1();
+    206              {
+    207                if ((toggle = !(toggle)))
+    208                  HAL_TOGGLE_LED1();
+    209                else
+    210                  HAL_TOGGLE_LED2();
+    211              }
+    212            }
+    213          
+    214            /* turn off LED1 */
+    215            HAL_TURN_OFF_LED1();
    \   000021   C290         CLR     0x90.0
-    215            HAL_TURN_OFF_LED2();
+    216            HAL_TURN_OFF_LED2();
    \   000023   C291         CLR     0x90.1
-    216          }
+    217          }
    \   000025   7F01         MOV     R7,#0x1
    \   000027   02....       LJMP    ?BANKED_LEAVE_XDATA
    \                     ??zmain_vdd_check_1:
@@ -523,36 +526,36 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
    \   000055   C291         CLR     0x90.1
    \   000057   80B0         SJMP    ??zmain_vdd_check_0
    \   000059                REQUIRE _A_P1
-    217          
-    218          /**************************************************************************************************
-    219           * @fn          zmain_ext_addr
-    220           *
-    221           * @brief       Execute a prioritized search for a valid extended address and write the results
-    222           *              into the OSAL NV system for use by the system. Temporary address not saved to NV.
-    223           *
-    224           * input parameters
-    225           *
-    226           * None.
-    227           *
-    228           * output parameters
-    229           *
-    230           * None.
-    231           *
-    232           * @return      None.
-    233           **************************************************************************************************
-    234           */
+    218          
+    219          /**************************************************************************************************
+    220           * @fn          zmain_ext_addr
+    221           *
+    222           * @brief       Execute a prioritized search for a valid extended address and write the results
+    223           *              into the OSAL NV system for use by the system. Temporary address not saved to NV.
+    224           *
+    225           * input parameters
+    226           *
+    227           * None.
+    228           *
+    229           * output parameters
+    230           *
+    231           * None.
+    232           *
+    233           * @return      None.
+    234           **************************************************************************************************
+    235           */
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    235          static void zmain_ext_addr(void)
+    236          static void zmain_ext_addr(void)
    \                     zmain_ext_addr:
-    236          {
+    237          {
    \   000000   74EE         MOV     A,#-0x12
    \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
    \   000005                ; Saved register size: 18
    \   000005                ; Auto size: 8
    \   000005   74F8         MOV     A,#-0x8
    \   000007   12....       LCALL   ?ALLOC_XSTACK8
-    237            uint8 nullAddr[Z_EXTADDR_LEN] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+    238            uint8 nullAddr[Z_EXTADDR_LEN] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
    \   00000A   85..82       MOV     DPL,?XSP + 0
    \   00000D   85..83       MOV     DPH,?XSP + 1
    \   000010   AC82         MOV     R4,DPL
@@ -561,12 +564,12 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
    \   000017   7582..       MOV     DPL,#`?<Constant {255, 255, 255, 255, 255, 255, 255,` & 0xff
    \   00001A   7408         MOV     A,#0x8
    \   00001C   12....       LCALL   ?MOVE_LONG8_XDATA_XDATA
-    238            uint8 writeNV = TRUE;
-    239          
-    240            // First check whether a non-erased extended address exists in the OSAL NV.
-    241            if ((SUCCESS != osal_nv_item_init(ZCD_NV_EXTADDR, Z_EXTADDR_LEN, NULL))  ||
-    242                (SUCCESS != osal_nv_read(ZCD_NV_EXTADDR, 0, Z_EXTADDR_LEN, aExtendedAddress)) ||
-    243                (osal_memcmp(aExtendedAddress, nullAddr, Z_EXTADDR_LEN)))
+    239            uint8 writeNV = TRUE;
+    240          
+    241            // First check whether a non-erased extended address exists in the OSAL NV.
+    242            if ((SUCCESS != osal_nv_item_init(ZCD_NV_EXTADDR, Z_EXTADDR_LEN, NULL))  ||
+    243                (SUCCESS != osal_nv_read(ZCD_NV_EXTADDR, 0, Z_EXTADDR_LEN, aExtendedAddress)) ||
+    244                (osal_memcmp(aExtendedAddress, nullAddr, Z_EXTADDR_LEN)))
    \   00001F   75....       MOV     ?V0 + 0,#aExtendedAddress & 0xff
    \   000022   75....       MOV     ?V0 + 1,#(aExtendedAddress >> 8) & 0xff
    \   000025   F5..         MOV     ?V0 + 2,A
@@ -623,10 +626,10 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
    \   000093   E9           MOV     A,R1
    \   000094   7003         JNZ     $+5
    \   000096   02....       LJMP    ??zmain_ext_addr_1 & 0xFFFF
-    244            {
-    245              // Attempt to read the extended address from the location on the lock bits page
-    246              // where the programming tools know to reserve it.
-    247              HalFlashRead(HAL_FLASH_IEEE_PAGE, HAL_FLASH_IEEE_OSET, aExtendedAddress, Z_EXTADDR_LEN);
+    245            {
+    246              // Attempt to read the extended address from the location on the lock bits page
+    247              // where the programming tools know to reserve it.
+    248              HalFlashRead(HAL_FLASH_IEEE_PAGE, HAL_FLASH_IEEE_OSET, aExtendedAddress, Z_EXTADDR_LEN);
    \                     ??zmain_ext_addr_0:
    \   000099                ; Setup parameters for call to function HalFlashRead
    \   000099   75..08       MOV     ?V0 + 8,#0x8
@@ -640,8 +643,8 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
    \   0000AB   12....       LCALL   ??HalFlashRead?relay
    \   0000AE   7402         MOV     A,#0x2
    \   0000B0   12....       LCALL   ?DEALLOC_XSTACK8
-    248          
-    249              if (osal_memcmp(aExtendedAddress, nullAddr, Z_EXTADDR_LEN))
+    249          
+    250              if (osal_memcmp(aExtendedAddress, nullAddr, Z_EXTADDR_LEN))
    \   0000B3                ; Setup parameters for call to function osal_memcmp
    \   0000B3   78..         MOV     R0,#?V0 + 4
    \   0000B5   12....       LCALL   ?PUSH_XSTACK_I_THREE
@@ -655,9 +658,9 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
    \   0000C7   12....       LCALL   ?DEALLOC_XSTACK8
    \   0000CA   E9           MOV     A,R1
    \   0000CB   6035         JZ      ??zmain_ext_addr_2
-    250              {
-    251                // Attempt to read the extended address from the designated location in the Info Page.
-    252                if (!osal_memcmp((uint8 *)(P_INFOPAGE+HAL_INFOP_IEEE_OSET), nullAddr, Z_EXTADDR_LEN))
+    251              {
+    252                // Attempt to read the extended address from the designated location in the Info Page.
+    253                if (!osal_memcmp((uint8 *)(P_INFOPAGE+HAL_INFOP_IEEE_OSET), nullAddr, Z_EXTADDR_LEN))
    \   0000CD                ; Setup parameters for call to function osal_memcmp
    \   0000CD   78..         MOV     R0,#?V0 + 4
    \   0000CF   12....       LCALL   ?PUSH_XSTACK_I_THREE
@@ -671,8 +674,8 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
    \   0000E1   12....       LCALL   ?DEALLOC_XSTACK8
    \   0000E4   E9           MOV     A,R1
    \   0000E5   7054         JNZ     ??zmain_ext_addr_3
-    253                {
-    254                  osal_memcpy(aExtendedAddress, (uint8 *)(P_INFOPAGE+HAL_INFOP_IEEE_OSET), Z_EXTADDR_LEN);
+    254                {
+    255                  osal_memcpy(aExtendedAddress, (uint8 *)(P_INFOPAGE+HAL_INFOP_IEEE_OSET), Z_EXTADDR_LEN);
    \   0000E7                ; Setup parameters for call to function osal_memcpy
    \   0000E7   75..0C       MOV     ?V0 + 0,#0xc
    \   0000EA   75..78       MOV     ?V0 + 1,#0x78
@@ -685,41 +688,41 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
    \   0000FA   12....       LCALL   ??osal_memcpy?relay
    \   0000FD   7403         MOV     A,#0x3
    \   0000FF   12....       LCALL   ?DEALLOC_XSTACK8
-    255                }
-    256                else  // No valid extended address was found.
-    257                {
-    258                  uint8 idx;
-    259                  
-    260          #if !defined ( NV_RESTORE )
-    261                  writeNV = FALSE;  // Make this a temporary IEEE address
-    262          #endif
-    263          
-    264                  /* Attempt to create a sufficiently random extended address for expediency.
-    265                   * Note: this is only valid/legal in a test environment and
-    266                   *       must never be used for a commercial product.
-    267                   */
-    268                  for (idx = 0; idx < (Z_EXTADDR_LEN - 2);)
-    269                  {
-    270                    uint16 randy = osal_rand();
-    271                    aExtendedAddress[idx++] = LO_UINT16(randy);
-    272                    aExtendedAddress[idx++] = HI_UINT16(randy);
-    273                  }
-    274                  // Next-to-MSB identifies ZigBee devicetype.
-    275          #if ZG_BUILD_COORDINATOR_TYPE && !ZG_BUILD_JOINING_TYPE
-    276                  aExtendedAddress[idx++] = 0x10;
-    277          #elif ZG_BUILD_RTRONLY_TYPE
-    278                  aExtendedAddress[idx++] = 0x20;
-    279          #else
-    280                  aExtendedAddress[idx++] = 0x30;
-    281          #endif
-    282                  // MSB has historical signficance.
-    283                  aExtendedAddress[idx] = 0xF8;
-    284                }
-    285              }
-    286          
-    287              if (writeNV)
-    288              {
-    289                (void)osal_nv_write(ZCD_NV_EXTADDR, 0, Z_EXTADDR_LEN, aExtendedAddress);
+    256                }
+    257                else  // No valid extended address was found.
+    258                {
+    259                  uint8 idx;
+    260                  
+    261          #if !defined ( NV_RESTORE )
+    262                  writeNV = FALSE;  // Make this a temporary IEEE address
+    263          #endif
+    264          
+    265                  /* Attempt to create a sufficiently random extended address for expediency.
+    266                   * Note: this is only valid/legal in a test environment and
+    267                   *       must never be used for a commercial product.
+    268                   */
+    269                  for (idx = 0; idx < (Z_EXTADDR_LEN - 2);)
+    270                  {
+    271                    uint16 randy = osal_rand();
+    272                    aExtendedAddress[idx++] = LO_UINT16(randy);
+    273                    aExtendedAddress[idx++] = HI_UINT16(randy);
+    274                  }
+    275                  // Next-to-MSB identifies ZigBee devicetype.
+    276          #if ZG_BUILD_COORDINATOR_TYPE && !ZG_BUILD_JOINING_TYPE
+    277                  aExtendedAddress[idx++] = 0x10;
+    278          #elif ZG_BUILD_RTRONLY_TYPE
+    279                  aExtendedAddress[idx++] = 0x20;
+    280          #else
+    281                  aExtendedAddress[idx++] = 0x30;
+    282          #endif
+    283                  // MSB has historical signficance.
+    284                  aExtendedAddress[idx] = 0xF8;
+    285                }
+    286              }
+    287          
+    288              if (writeNV)
+    289              {
+    290                (void)osal_nv_write(ZCD_NV_EXTADDR, 0, Z_EXTADDR_LEN, aExtendedAddress);
    \                     ??zmain_ext_addr_2:
    \   000102                ; Setup parameters for call to function osal_nv_write
    \   000102   75....       MOV     ?V0 + 0,#aExtendedAddress & 0xff
@@ -737,18 +740,18 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
    \   000120   12....       LCALL   ??osal_nv_write?relay
    \   000123   7404         MOV     A,#0x4
    \   000125   12....       LCALL   ?DEALLOC_XSTACK8
-    290              }
-    291            }
-    292          
-    293            // Set the MAC PIB extended address according to results from above.
-    294            (void)ZMacSetReq(MAC_EXTENDED_ADDRESS, aExtendedAddress);
+    291              }
+    292            }
+    293          
+    294            // Set the MAC PIB extended address according to results from above.
+    295            (void)ZMacSetReq(MAC_EXTENDED_ADDRESS, aExtendedAddress);
    \                     ??zmain_ext_addr_1:
    \   000128                ; Setup parameters for call to function ZMacSetReq
    \   000128   7A..         MOV     R2,#aExtendedAddress & 0xff
    \   00012A   7B..         MOV     R3,#(aExtendedAddress >> 8) & 0xff
    \   00012C   79E2         MOV     R1,#-0x1e
    \   00012E   12....       LCALL   ??ZMacSetReq?relay
-    295          }
+    296          }
    \   000131   7408         MOV     A,#0x8
    \   000133   12....       LCALL   ?DEALLOC_XSTACK8
    \   000136   7F0A         MOV     R7,#0xa
@@ -801,49 +804,49 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
    \   00000A   3400         ADDC    A,#0x0
    \   00000C   F583         MOV     DPH,A
    \   00000E   22           RET
-    296          
-    297          /**************************************************************************************************
-    298           * @fn          zmain_dev_info
-    299           *
-    300           * @brief       This displays the IEEE (MSB to LSB) on the LCD.
-    301           *
-    302           * input parameters
-    303           *
-    304           * None.
-    305           *
-    306           * output parameters
-    307           *
-    308           * None.
-    309           *
-    310           * @return      None.
-    311           **************************************************************************************************
-    312           */
+    297          
+    298          /**************************************************************************************************
+    299           * @fn          zmain_dev_info
+    300           *
+    301           * @brief       This displays the IEEE (MSB to LSB) on the LCD.
+    302           *
+    303           * input parameters
+    304           *
+    305           * None.
+    306           *
+    307           * output parameters
+    308           *
+    309           * None.
+    310           *
+    311           * @return      None.
+    312           **************************************************************************************************
+    313           */
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    313          static void zmain_dev_info(void)
+    314          static void zmain_dev_info(void)
    \                     zmain_dev_info:
-    314          {
+    315          {
    \   000000   74F6         MOV     A,#-0xa
    \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
    \   000005                ; Saved register size: 10
    \   000005                ; Auto size: 17
    \   000005   74EF         MOV     A,#-0x11
    \   000007   12....       LCALL   ?ALLOC_XSTACK8
-    315          #ifdef LCD_SUPPORTED
-    316            uint8 i;
-    317            uint8 *xad;
-    318            uint8 lcd_buf[Z_EXTADDR_LEN*2+1];
-    319          
-    320            // Display the extended address.
-    321            xad = aExtendedAddress + Z_EXTADDR_LEN - 1;
+    316          #ifdef LCD_SUPPORTED
+    317            uint8 i;
+    318            uint8 *xad;
+    319            uint8 lcd_buf[Z_EXTADDR_LEN*2+1];
+    320          
+    321            // Display the extended address.
+    322            xad = aExtendedAddress + Z_EXTADDR_LEN - 1;
    \   00000A   78..         MOV     R0,#(aExtendedAddress + 7) & 0xff
    \   00000C   79..         MOV     R1,#((aExtendedAddress + 7) >> 8) & 0xff
-    322          
-    323            for (i = 0; i < Z_EXTADDR_LEN*2; xad--)
+    323          
+    324            for (i = 0; i < Z_EXTADDR_LEN*2; xad--)
    \   00000E   7C00         MOV     R4,#0x0
-    324            {
-    325              uint8 ch;
-    326              ch = (*xad >> 4) & 0x0F;
+    325            {
+    326              uint8 ch;
+    327              ch = (*xad >> 4) & 0x0F;
    \                     ??zmain_dev_info_0:
    \   000010   8882         MOV     DPL,R0
    \   000012   8983         MOV     DPH,R1
@@ -851,7 +854,7 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
    \   000015   C4           SWAP    A
    \   000016   540F         ANL     A,#0xf
    \   000018   FD           MOV     R5,A
-    327              lcd_buf[i++] = ch + (( ch < 10 ) ? '0' : '7');
+    328              lcd_buf[i++] = ch + (( ch < 10 ) ? '0' : '7');
    \   000019   EC           MOV     A,R4
    \   00001A   FE           MOV     R6,A
    \   00001B   0C           INC     R4
@@ -872,13 +875,13 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
    \                     ??CrossCallReturnLabel_3:
    \   000031   D0E0         POP     A
    \   000033   F0           MOVX    @DPTR,A
-    328              ch = *xad & 0x0F;
+    329              ch = *xad & 0x0F;
    \   000034   8882         MOV     DPL,R0
    \   000036   8983         MOV     DPH,R1
    \   000038   E0           MOVX    A,@DPTR
    \   000039   540F         ANL     A,#0xf
    \   00003B   FD           MOV     R5,A
-    329              lcd_buf[i++] = ch + (( ch < 10 ) ? '0' : '7');
+    330              lcd_buf[i++] = ch + (( ch < 10 ) ? '0' : '7');
    \   00003C   EC           MOV     A,R4
    \   00003D   FF           MOV     R7,A
    \   00003E   0C           INC     R4
@@ -896,7 +899,7 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
    \   00004D   C0E0         PUSH    A
    \   00004F   8F..         MOV     ?V0 + 0,R7
    \   000051   12....       LCALL   ?Subroutine1 & 0xFFFF
-    330            }
+    331            }
    \                     ??CrossCallReturnLabel_4:
    \   000054   D0E0         POP     A
    \   000056   F0           MOVX    @DPTR,A
@@ -910,18 +913,18 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
    \   000060   C3           CLR     C
    \   000061   9410         SUBB    A,#0x10
    \   000063   40AB         JC      ??zmain_dev_info_0
-    331            lcd_buf[Z_EXTADDR_LEN*2] = '\0';
+    332            lcd_buf[Z_EXTADDR_LEN*2] = '\0';
    \   000065   7410         MOV     A,#0x10
    \   000067   12....       LCALL   ?XSTACK_DISP0_8
    \   00006A   E4           CLR     A
    \   00006B   F0           MOVX    @DPTR,A
-    332            HalLcdWriteString( "IEEE: ", HAL_LCD_LINE_1 );
+    333            HalLcdWriteString( "IEEE: ", HAL_LCD_LINE_1 );
    \   00006C                ; Setup parameters for call to function HalLcdWriteString
    \   00006C   7901         MOV     R1,#0x1
    \   00006E   7A..         MOV     R2,#`?<Constant "IEEE: ">` & 0xff
    \   000070   7B..         MOV     R3,#(`?<Constant "IEEE: ">` >> 8) & 0xff
    \   000072   12....       LCALL   ??HalLcdWriteString?relay
-    333            HalLcdWriteString( (char*)lcd_buf, HAL_LCD_LINE_2 );
+    334            HalLcdWriteString( (char*)lcd_buf, HAL_LCD_LINE_2 );
    \   000075                ; Setup parameters for call to function HalLcdWriteString
    \   000075   7902         MOV     R1,#0x2
    \   000077   85..82       MOV     DPL,?XSP + 0
@@ -929,8 +932,8 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
    \   00007D   AA82         MOV     R2,DPL
    \   00007F   AB83         MOV     R3,DPH
    \   000081   12....       LCALL   ??HalLcdWriteString?relay
-    334          #endif
-    335          }
+    335          #endif
+    336          }
    \   000084   7411         MOV     A,#0x11
    \   000086   12....       LCALL   ?DEALLOC_XSTACK8
    \   000089   7F02         MOV     R7,#0x2
@@ -991,39 +994,39 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
    \            7472756D
    \            656E7473
    \            00      
-    336          
-    337          #ifdef LCD_SUPPORTED
-    338          /*********************************************************************
-    339           * @fn      zmain_lcd_init
-    340           * @brief   Initialize LCD at start up.
-    341           * @return  none
-    342           *********************************************************************/
-    343          static void zmain_lcd_init ( void )
-    344          {
-    345          #ifdef SERIAL_DEBUG_SUPPORTED
-    346            {
-    347              HalLcdWriteString( "TexasInstruments", HAL_LCD_LINE_1 );
-    348          
-    349          #if defined( MT_MAC_FUNC )
-    350          #if defined( ZDO_COORDINATOR )
-    351                HalLcdWriteString( "MAC-MT Coord", HAL_LCD_LINE_2 );
-    352          #else
-    353                HalLcdWriteString( "MAC-MT Device", HAL_LCD_LINE_2 );
-    354          #endif // ZDO
-    355          #elif defined( MT_NWK_FUNC )
-    356          #if defined( ZDO_COORDINATOR )
-    357                HalLcdWriteString( "NWK Coordinator", HAL_LCD_LINE_2 );
-    358          #else
-    359                HalLcdWriteString( "NWK Device", HAL_LCD_LINE_2 );
-    360          #endif // ZDO
-    361          #endif // MT_FUNC
-    362            }
-    363          #endif // SERIAL_DEBUG_SUPPORTED
-    364          }
-    365          #endif
-    366          
-    367          /*********************************************************************
-    368          *********************************************************************/
+    337          
+    338          #ifdef LCD_SUPPORTED
+    339          /*********************************************************************
+    340           * @fn      zmain_lcd_init
+    341           * @brief   Initialize LCD at start up.
+    342           * @return  none
+    343           *********************************************************************/
+    344          static void zmain_lcd_init ( void )
+    345          {
+    346          #ifdef SERIAL_DEBUG_SUPPORTED
+    347            {
+    348              HalLcdWriteString( "TexasInstruments", HAL_LCD_LINE_1 );
+    349          
+    350          #if defined( MT_MAC_FUNC )
+    351          #if defined( ZDO_COORDINATOR )
+    352                HalLcdWriteString( "MAC-MT Coord", HAL_LCD_LINE_2 );
+    353          #else
+    354                HalLcdWriteString( "MAC-MT Device", HAL_LCD_LINE_2 );
+    355          #endif // ZDO
+    356          #elif defined( MT_NWK_FUNC )
+    357          #if defined( ZDO_COORDINATOR )
+    358                HalLcdWriteString( "NWK Coordinator", HAL_LCD_LINE_2 );
+    359          #else
+    360                HalLcdWriteString( "NWK Device", HAL_LCD_LINE_2 );
+    361          #endif // ZDO
+    362          #endif // MT_FUNC
+    363            }
+    364          #endif // SERIAL_DEBUG_SUPPORTED
+    365          }
+    366          #endif
+    367          
+    368          /*********************************************************************
+    369          *********************************************************************/
 
    Maximum stack usage in bytes:
 
@@ -1045,6 +1048,7 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
        -> zmain_dev_info        0      0      0
        -> HalLcdWriteString     0      0      0
        -> LS164_Cfg             0      0      0
+       -> Led_Init              0      0      0
        -> osal_start_system     0      0      0
      zmain_dev_info             1      0     27
        -> HalLcdWriteString     0      0     54
@@ -1078,7 +1082,7 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
      SLEEPCMD                                          1
      CLKCONCMD                                         1
      P1DIR                                             1
-     main                                            128
+     main                                            131
      zmain_vdd_check                                  89
      zmain_ext_addr                                  368
      ?Subroutine0                                     15
@@ -1093,12 +1097,12 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\ZMain\TI2530DB\ZMain.
      ?<Constant "TexasInstruments">                   17
 
  
- 761 bytes in segment BANKED_CODE
+ 764 bytes in segment BANKED_CODE
   24 bytes in segment BANK_RELAYS
    7 bytes in segment SFR_AN
   32 bytes in segment XDATA_ROM_C
  
- 785 bytes of CODE  memory
+ 788 bytes of CODE  memory
   32 bytes of CONST memory
    0 bytes of DATA  memory (+ 7 bytes shared)
 

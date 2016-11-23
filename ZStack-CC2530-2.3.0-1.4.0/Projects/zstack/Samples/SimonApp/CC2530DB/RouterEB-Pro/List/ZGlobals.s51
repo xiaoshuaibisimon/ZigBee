@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                            /
-// IAR C/C++ Compiler V8.10.3.10338/W32 for 8051        22/Nov/2016  20:48:25 /
+// IAR C/C++ Compiler V8.10.3.10338/W32 for 8051        23/Nov/2016  16:17:54 /
 // Copyright 2004-2011 IAR Systems AB.                                        /
 //                                                                            /
 //    Core               =  plain                                             /
@@ -43,7 +43,7 @@
 //                          2530-2.3.0-1.4.0\Components\stack\sys\ZGlobals.c  /
 //                          -D ZIGBEEPRO -D ZTOOL_P1 -D MT_TASK -D            /
 //                          MT_SYS_FUNC -D MT_ZDO_FUNC -D                     /
-//                          LCD_SUPPORTED=DEBUG -lC                           /
+//                          LCD_SUPPORTED=DEBUG -D NV_RESTORE -D NV_INIT -lC  /
 //                          F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projec /
 //                          ts\zstack\Samples\SimonApp\CC2530DB\RouterEB-Pro\ /
 //                          List\ -lA F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1. /
@@ -975,6 +975,126 @@ zgSapiEndpoint:
 //  241 static CONST zgItem_t zgItemTable[] =
 zgItemTable:
         DATA16
+        DW 135
+        DW 1
+        DW zgDeviceLogicalType
+        DW 36
+        DW 2
+        DW zgPollRate
+        DW 37
+        DW 2
+        DW zgQueuedPollRate
+        DW 38
+        DW 2
+        DW zgResponsePollRate
+        DW 39
+        DW 2
+        DW zgRejoinPollRate
+        DW 40
+        DW 1
+        DW zgMaxDataRetries
+        DW 41
+        DW 1
+        DW zgMaxPollFailureRetries
+        DW 132
+        DW 4
+        DW zgDefaultChannelList
+        DW 134
+        DW 1
+        DW zgDefaultStartingScanDuration
+        DW 42
+        DW 1
+        DW zgStackProfile
+        DW 43
+        DW 1
+        DW zgIndirectMsgTimeout
+        DW 44
+        DW 1
+        DW zgRouteExpiryTime
+        DW 45
+        DW 8
+        DW zgExtendedPANID
+        DW 46
+        DW 1
+        DW zgMaxBcastRetires
+        DW 47
+        DW 1
+        DW zgPassiveAckTimeout
+        DW 48
+        DW 1
+        DW zgBcastDeliveryTime
+        DW 49
+        DW 1
+        DW zgNwkMode
+        DW 50
+        DW 1
+        DW zgConcentratorEnable
+        DW 51
+        DW 1
+        DW zgConcentratorDiscoveryTime
+        DW 52
+        DW 1
+        DW zgConcentratorRadius
+        DW 54
+        DW 1
+        DW zgConcentratorRC
+        DW 131
+        DW 2
+        DW zgConfigPANID
+        DW 98
+        DW 16
+        DW zgPreConfigKey
+        DW 99
+        DW 1
+        DW zgPreConfigKeys
+        DW 100
+        DW 1
+        DW zgSecurityMode
+        DW 101
+        DW 1
+        DW zgSecurePermitJoin
+        DW 109
+        DW 1
+        DW zgUseDefaultTCLK
+        DW 110
+        DW 2
+        DW zgTrustCenterAddr
+        DW 67
+        DW 1
+        DW zgApscMaxFrameRetries
+        DW 68
+        DW 2
+        DW zgApscAckWaitDurationPolled
+        DW 69
+        DW 1
+        DW zgApsAckWaitMultiplier
+        DW 70
+        DW 2
+        DW zgApsDefaultMaxBindingTime
+        DW 71
+        DW 8
+        DW zgApsUseExtendedPANID
+        DW 72
+        DW 1
+        DW zgApsUseInsecureJoin
+        DW 73
+        DW 1
+        DW zgApscMaxWindowSize
+        DW 74
+        DW 2
+        DW zgApsInterframeDelay
+        DW 75
+        DW 1
+        DW zgApsNonMemberRadius
+        DW 4
+        DW 1
+        DW zgStartDelay
+        DW 161
+        DW 1
+        DW zgSapiEndpoint
+        DW 55
+        DW 1
+        DW zgNwkMgrMode
         DW 0
         DW 0
         DW 0H
@@ -2351,12 +2471,12 @@ zgSetItem:
 // 
 // 610 bytes in segment BANKED_CODE
 //  30 bytes in segment BANK_RELAYS
-//   6 bytes in segment CODE_C
+// 246 bytes in segment CODE_C
 //  42 bytes in segment XDATA_I
 //  42 bytes in segment XDATA_ID
 //  39 bytes in segment XDATA_Z
 // 
-// 688 bytes of CODE  memory
+// 928 bytes of CODE  memory
 //  81 bytes of XDATA memory
 //
 //Errors: none

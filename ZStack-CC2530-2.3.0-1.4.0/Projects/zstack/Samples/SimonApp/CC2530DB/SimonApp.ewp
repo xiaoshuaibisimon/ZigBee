@@ -3461,6 +3461,7 @@
           <state>MT_SYS_FUNC</state>
           <state>MT_ZDO_FUNC</state>
           <state>LCD_SUPPORTED=DEBUG</state>
+          <state>HAL_UART=TRUE</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -4521,6 +4522,8 @@
           <state>MT_SYS_FUNC</state>
           <state>MT_ZDO_FUNC</state>
           <state>LCD_SUPPORTED=DEBUG</state>
+          <state>NV_RESTORE</state>
+          <state>NV_INIT</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
