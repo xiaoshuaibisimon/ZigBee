@@ -169,6 +169,7 @@ int main( void )
 #endif
 
   LS164_Cfg();
+  Led_Init();
   osal_start_system(); // No Return from here
 
   return 0;  // Shouldn't get here.
