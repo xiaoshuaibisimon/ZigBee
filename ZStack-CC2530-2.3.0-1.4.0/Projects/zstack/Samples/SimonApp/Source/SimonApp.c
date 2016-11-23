@@ -285,7 +285,7 @@ UINT16 SimonApp_ProcessEvent( byte task_id, UINT16 events )
           if(SimonApp_NwkState == DEV_ZB_COORD)
           {
             LS164_BYTE(11);
-       
+            osal_set_event(SimonApp_TaskID,SimonApp_SEND_MSG_EVT);
           }
           
           if(SimonApp_NwkState == DEV_ROUTER)
@@ -329,6 +329,7 @@ UINT16 SimonApp_ProcessEvent( byte task_id, UINT16 events )
                       SimonApp_SEND_MSG_TIMEOUT );
 
     // return unprocessed events
+    P0_1 = 0;//µ„¡¡LED2
     return (events ^ SimonApp_SEND_MSG_EVT);
   }
 

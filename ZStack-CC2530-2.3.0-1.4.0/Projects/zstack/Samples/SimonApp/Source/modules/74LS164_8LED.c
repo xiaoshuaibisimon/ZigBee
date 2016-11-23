@@ -30,3 +30,12 @@ void LS164_BYTE(UCHAR Index) //P1.3  DATA   P1.2  CLK
         LS164_CLK=1;
     }
 }
+
+/*∞Â‘ÿLED2≥ı ºªØ*/
+void Led_Init(void)
+{
+    P0SEL &= ~0x02;
+    P0DIR |= 0x02;
+    P0_1 = 1;
+}
+

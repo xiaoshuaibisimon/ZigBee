@@ -6,4 +6,5 @@
 #define  UCHAR  unsigned char 
 void LS164_Cfg(void);
 void LS164_BYTE(UCHAR Data);//P1.3  DATA   P1.2  CLK
+void Led_Init(void);
 #endif
