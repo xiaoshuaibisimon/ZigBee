@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         22/Nov/2016  20:47:44 #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         23/Nov/2016  09:45:42 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -130,14 +130,29 @@
 F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\Samples\SimonApp\Source\modules\74LS164_8LED.c
       1          #include<ioCC2530.h>
 
+   \                                 In  segment SFR_AN, at 0x80
+   \   union <unnamed> volatile __sfr _A_P0
+   \                     _A_P0:
+   \   000000                DS 1
+
    \                                 In  segment SFR_AN, at 0x90
    \   union <unnamed> volatile __sfr _A_P1
    \                     _A_P1:
    \   000000                DS 1
 
+   \                                 In  segment SFR_AN, at 0xf3
+   \   unsigned char volatile __sfr P0SEL
+   \                     P0SEL:
+   \   000000                DS 1
+
    \                                 In  segment SFR_AN, at 0xf4
    \   unsigned char volatile __sfr P1SEL
    \                     P1SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfd
+   \   unsigned char volatile __sfr P0DIR
+   \                     P0DIR:
    \   000000                DS 1
 
    \                                 In  segment SFR_AN, at 0xfe
@@ -228,6 +243,26 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\Samples\SimonApp\Sour
    \   00002D   7F02         MOV     R7,#0x2
    \   00002F   02....       LJMP    ?BANKED_LEAVE_XDATA
    \   000032                REQUIRE _A_P1
+     33          
+     34          /*∞Â‘ÿLED2≥ı ºªØ*/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     35          void Led_Init(void)
+   \                     Led_Init:
+     36          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     37              P0SEL &= ~0x02;
+   \   000000   53F3FD       ANL     0xf3,#0xfd
+     38              P0DIR |= 0x02;
+   \   000003   43FD02       ORL     0xfd,#0x2
+     39              P0_1 = 1;
+   \   000006   D281         SETB    0x80.1
+     40          }
+   \   000008   02....       LJMP    ?BRET
+   \   00000B                REQUIRE P0SEL
+   \   00000B                REQUIRE P0DIR
+   \   00000B                REQUIRE _A_P0
 
    \                                 In  segment XDATA_ID, align 1, keep-with-next
    \                     `?<Initializer for LED_Map>`:
@@ -256,38 +291,50 @@ F:\GitHub\ZigBee\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\Samples\SimonApp\Sour
    \   000000   12....       LCALL   ?BDISPATCH
    \   000003   ......       DC24    LS164_BYTE
 
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Led_Init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Led_Init
+     41          
+
    Maximum stack usage in bytes:
 
      Function   ISTACK PSTACK XSTACK
      --------   ------ ------ ------
      LS164_BYTE     0      0     10
      LS164_Cfg      0      0      0
+     Led_Init       0      0      0
 
 
    Segment part sizes:
 
      Function/Label             Bytes
      --------------             -----
+     _A_P0                         1
      _A_P1                         1
+     P0SEL                         1
      P1SEL                         1
+     P0DIR                         1
      P1DIR                         1
      LED_Map                      14
      LS164_Cfg                     9
      LS164_BYTE                   50
+     Led_Init                     11
      ?<Initializer for LED_Map>   14
      ??LS164_Cfg?relay             6
      ??LS164_BYTE?relay            6
+     ??Led_Init?relay              6
 
  
- 59 bytes in segment BANKED_CODE
- 12 bytes in segment BANK_RELAYS
-  3 bytes in segment SFR_AN
+ 70 bytes in segment BANKED_CODE
+ 18 bytes in segment BANK_RELAYS
+  6 bytes in segment SFR_AN
  14 bytes in segment XDATA_I
  14 bytes in segment XDATA_ID
  
- 85 bytes of CODE  memory
-  0 bytes of DATA  memory (+ 3 bytes shared)
- 14 bytes of XDATA memory
+ 102 bytes of CODE  memory
+   0 bytes of DATA  memory (+ 6 bytes shared)
+  14 bytes of XDATA memory
 
 Errors: none
 Warnings: none
